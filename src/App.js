@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+
+import { getGifs } from './services/gifs'
+
+import ListOfGifs from './components/ListOfgifs'
+
+import './App.css'
 
 function App() {
+  const [gifs, setGifs] = useState([])
+
+  useEffect(() => {
+    getGifs({ query: 'aomine', limit: 5 })
+      .then(setGifs)
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Editando ando
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React.js
-        </a>
-      </header>
+    <div className='App'>
+      <ListOfGifs gifs={gifs} />
     </div>
   );
 }
 
-export default App;
+export default App
