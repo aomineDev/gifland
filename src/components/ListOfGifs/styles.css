@@ -1,0 +1,6 @@
+.Gifs {
+  padding-left: 30px;
+  padding-right: 30px;
+  columns: 4;
+  column-gap: 20px;
+}

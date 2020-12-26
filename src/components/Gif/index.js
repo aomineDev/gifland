@@ -1,8 +1,10 @@
 import { Link } from 'wouter'
 
+import './styles.css'
+
 export default function Gif ({ id, url, title }) {
   return (
-    <div>
+    <div className='Gif'>
       <Link to={`/details/${id}`}>
         <img
           src={url}

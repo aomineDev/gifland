@@ -1,10 +1,12 @@
-import Gif from './Gif'
+import Gif from '../Gif/index'
+
+import './styles.css'
 
 export default function ListOfGifs ({ gifs }) {
-  if (!gifs.lenght) return <p>Loading...</p>
+  if (!gifs.length) return <p>Loading...</p>
 
   return (
-    <section>
+    <section className='Gifs'>
       {gifs.map(({ id, title, url }) => (
         <Gif
           key={id}

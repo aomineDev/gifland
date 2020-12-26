@@ -1,0 +1,8 @@
+.Gif {
+  padding-top: 20px;
+  break-inside: avoid;
+}
+.Gif img {
+  width: 100%;
+  display: block;
+}

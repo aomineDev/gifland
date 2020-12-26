@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { getGifs } from '../services/gifs'
 
-import ListOfGifs from '../components/ListOfgifs'
+import ListOfGifs from '../components/ListOfGifs'
 
 import '../App.css'
 
@@ -11,7 +11,7 @@ export default function Search ({ params }) {
   const { query } = params
 
   useEffect(() => {
-    getGifs({ query, limit: 5 })
+    getGifs({ query, limit: 10 })
       .then(setGifs)
   }, [query])
 
