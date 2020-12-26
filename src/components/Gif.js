@@ -1,10 +1,15 @@
-export default function Gif ({ url, title }) {
+import { Link } from 'wouter'
+
+export default function Gif ({ id, url, title }) {
   return (
     <div>
-      <img
-        src={url}
-        alt={title}
-      />
+      <Link to={`/details/${id}`}>
+        <img
+          src={url}
+          alt={title}
+          title={title}
+        />
+      </Link>
     </div>
   )
 }

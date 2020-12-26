@@ -12,6 +12,14 @@ export function getGifs ({ query = 'panda', limit = 1 } = {}) {
     .then(({ data }) => data.map(mapGifs))
 }
 
+export function getGif ({ id }) {
+  const apiURL = `${config.apiBaseURL}/${id}?api_key=${config.apiKey}`
+
+  return fetch(apiURL)
+    .then(response => response.json())
+    .then(({ data }) => mapGifs(data))
+}
+
 function mapGifs ({ id, title, images }) {
   return {
     id,
