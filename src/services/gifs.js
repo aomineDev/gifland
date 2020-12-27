@@ -1,15 +1,19 @@
 import config from '../config'
 
-export function getGifs ({ query = 'panda', limit = 1 } = {}) {
+export function getGifs ({ type, query, limit = 8 } = {}) {
   const offset = '0'
   const rating = 'g'
   const lang = 'en'
 
-  const apiURL = `${config.apiBaseURL}/search?api_key=${config.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`
+  const apiURL = type === 'trending' ? `${config.apiBaseURL}/trending?api_key=${config.apiKey}&limit=${limit}&rating=${rating}` : `${config.apiBaseURL}/search?api_key=${config.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`
 
   return fetch(apiURL)
     .then(response => response.json())
-    .then(({ data }) => data.map(mapGifs))
+    .then(({ data }) => data.map(({ id, title, images }) => ({
+      id,
+      title,
+      url: images.fixed_height_downsampled.url
+    })))
 }
 
 export function getGif ({ id }) {
@@ -17,13 +21,9 @@ export function getGif ({ id }) {
 
   return fetch(apiURL)
     .then(response => response.json())
-    .then(({ data }) => mapGifs(data))
-}
-
-function mapGifs ({ id, title, images }) {
-  return {
-    id,
-    title,
-    url: images.downsized.url
-  }
+    .then(({ data }) => ({
+      id: data.id,
+      title: data.title,
+      url: data.images.fixed_height.url
+    }))
 }

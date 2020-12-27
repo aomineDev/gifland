@@ -1,6 +1,8 @@
 .Gifs {
-  padding-left: 30px;
-  padding-right: 30px;
-  columns: 4;
-  column-gap: 20px;
+  columns: 280px auto;
+  column-gap: 10px;
+  max-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
 }
+

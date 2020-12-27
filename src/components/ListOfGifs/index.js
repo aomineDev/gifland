@@ -1,4 +1,4 @@
-import Gif from '../Gif/index'
+import Gif from '../Gif'
 
 import './styles.css'
 

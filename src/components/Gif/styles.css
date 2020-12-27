@@ -1,6 +1,7 @@
 .Gif {
-  padding-top: 20px;
+  padding-top: 10px;
   break-inside: avoid;
+  cursor: pointer;
 }
 .Gif img {
   width: 100%;
