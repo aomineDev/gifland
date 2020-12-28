@@ -1,4 +1,10 @@
 .Title {
   font-size: 40px;
-  padding-bottom: var(--center-size);
+  margin-bottom: var(--center-size);
+}
+
+@media screen and (max-width: 768px) {
+  .Title {
+    font-size: 30px;
+  }
 }

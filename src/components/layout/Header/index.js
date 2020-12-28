@@ -1,5 +1,7 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'wouter'
+
+import useOnScroll from '../../../hooks/useOnScroll'
 
 import Container from '../Container'
 
@@ -12,23 +14,25 @@ export default function Header () {
   const [isActive, setIsActive] = useState(false)
   const [isSearchBarActive, setIsSearchBarActive] = useState(false)
   const [query, setQuery] = useState('')
+
   const [location, setLocation] = useLocation()
 
+  const isScrollEnable = location === '/'
+
+  useOnScroll({
+    handleScroll,
+    isScrollEnable,
+    deps: [location] 
+  })
+
+  useEffect(() => {
+    if (!isScrollEnable) setIsActive(true)
+    else if (window.scrollY === 0) setIsActive(false)
+  }, [isScrollEnable])
+
   const headerClassName = `Header ${isActive ? 'active' : ''}`
+
   const headerFormClassName = `Header-form ${isSearchBarActive ? 'active' : ''}`
-
-  useLayoutEffect(() => {
-    const isBrowser = typeof window !== 'undefined'
-
-    if (!isBrowser) return
-
-    if (location !== '/') return setIsActive(true)
-    else setIsActive(false)
-
-    window.addEventListener('scroll', handleScroll)
-    
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [location])
 
   function handleScroll () {
     if (window.scrollY !== 0) return setIsActive(true)
