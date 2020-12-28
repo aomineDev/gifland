@@ -22,8 +22,11 @@ export function getGif ({ id }) {
   return fetch(apiURL)
     .then(response => response.json())
     .then(({ data }) => ({
-      id: data.id,
       title: data.title,
-      url: data.images.fixed_height.url
+      dateTime: data.import_datetime,
+      rating: data.rating,
+      user: data.user,
+      url: data.images.downsized.url
+      // url: data.images.fixed_height.url
     }))
 }

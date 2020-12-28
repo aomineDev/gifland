@@ -7,7 +7,12 @@ body {
   text-rendering: optimizeLegibility;
   color: #fff;
 }
-
+a,
+button,
+img {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

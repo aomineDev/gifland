@@ -1,9 +1,10 @@
 import Gif from '../Gif'
+import Loader from '../shared/Loader'
 
 import './styles.css'
 
 export default function ListOfGifs ({ gifs }) {
-  if (!gifs.length) return <p>Loading...</p>
+  if (!gifs.length) return <Loader />
 
   return (
     <section className='Gifs'>
