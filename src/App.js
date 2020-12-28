@@ -6,6 +6,8 @@ import Search from './pages/Search'
 
 import Header from './components/layout/Header'
 
+import './assets/css/layout/App.css'
+
 function App () {
   return (
     <div className="App">

@@ -6,8 +6,6 @@ import Container from '../components/layout/Container'
 import Title from '../components/Title/index'
 import ListOfGifs from '../components/ListOfGifs'
 
-import '../App.css'
-
 export default function Search ({ params }) {
   const [gifs, setGifs] = useState([])
   const { query } = params

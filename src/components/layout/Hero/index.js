@@ -30,7 +30,7 @@ export default function Hero () {
           <form onSubmit={handleSubmit}>
             <input
               type="search"
-              placeholder="Buscar..."
+              placeholder="Search a Gif here..."
               className="Hero-search"
               onChange={handleChange}
             />

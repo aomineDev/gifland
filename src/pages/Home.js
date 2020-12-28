@@ -8,8 +8,6 @@ import Hero from '../components/layout/Hero'
 import Title from '../components/Title/index'
 import ListOfGifs from '../components/ListOfGifs'
 
-import '../App.css'
-
 export default function Home () {
   const [gifs, setGifs] = useState([])
 
