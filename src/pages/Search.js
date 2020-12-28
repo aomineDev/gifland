@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react'
-
-import { getGifs } from '../services/gifs'
+import useGifs from '../hooks/useGifs'
 
 import Container from '../components/layout/Container'
 import Title from '../components/Title/index'
 import ListOfGifs from '../components/ListOfGifs'
 
 export default function Search ({ params }) {
-  const [gifs, setGifs] = useState([])
   const { query } = params
 
-  useEffect(() => {
-    getGifs({ query, limit: 8 })
-      .then(setGifs)
-  }, [query])
-
+  const { gifs } = useGifs({
+    type: 'search',
+    query,
+    limit: 8
+  })
+  
   return (
     <section>
       <Container withHeader withTop>

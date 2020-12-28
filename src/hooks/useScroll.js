@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react'
 
 
-export default function useOnScroll ({ handleScroll, isScrollEnable, deps = [] }) {
+export default function useScroll ({ handleScroll, isScrollEnable }) {
   useLayoutEffect(() => {
     if (!isScrollEnable) return
 
@@ -12,5 +12,5 @@ export default function useOnScroll ({ handleScroll, isScrollEnable, deps = [] }
     window.addEventListener('scroll', handleScroll)
     
     return () => window.removeEventListener('scroll', handleScroll)
-  }, deps) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isScrollEnable]) // eslint-disable-line react-hooks/exhaustive-deps
 }

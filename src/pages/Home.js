@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
-
-import { getGifs } from '../services/gifs'
+import useGifs from '../hooks/useGifs'
 
 import Container from '../components/layout/Container'
 
@@ -9,12 +7,10 @@ import Title from '../components/Title/index'
 import ListOfGifs from '../components/ListOfGifs'
 
 export default function Home () {
-  const [gifs, setGifs] = useState([])
-
-  useEffect(() => {
-    getGifs({ type: 'trending', limit: 16 })
-      .then(setGifs)
-  }, [])
+  const {gifs } = useGifs({
+    type: 'trending',
+    limit: 16
+  })
 
   return (
     <section>

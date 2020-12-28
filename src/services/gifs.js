@@ -5,7 +5,9 @@ export function getGifs ({ type, query, limit = 8 } = {}) {
   const rating = 'g'
   const lang = 'en'
 
-  const apiURL = type === 'trending' ? `${config.apiBaseURL}/trending?api_key=${config.apiKey}&limit=${limit}&rating=${rating}` : `${config.apiBaseURL}/search?api_key=${config.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`
+  const apiURL = type === 'trending' 
+  ? `${config.apiBaseURL}/trending?api_key=${config.apiKey}&limit=${limit}&rating=${rating}` 
+  : `${config.apiBaseURL}/search?api_key=${config.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`
 
   return fetch(apiURL)
     .then(response => response.json())

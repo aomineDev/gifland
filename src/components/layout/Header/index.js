@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'wouter'
 
-import useOnScroll from '../../../hooks/useOnScroll'
+import useScroll from '../../../hooks/useScroll'
 
 import Container from '../Container'
 
@@ -19,10 +19,9 @@ export default function Header () {
 
   const isScrollEnable = location === '/'
 
-  useOnScroll({
+  useScroll({
     handleScroll,
-    isScrollEnable,
-    deps: [location] 
+    isScrollEnable
   })
 
   useEffect(() => {
