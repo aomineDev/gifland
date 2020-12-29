@@ -2,13 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
 
+import { GifsContextProvider } from './context/GifsContext'
+
 import App from './App'
 
 import './assets/css/styles.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GifsContextProvider>
+      <App />
+    </GifsContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

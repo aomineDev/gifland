@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+
+import GifsContext from '../context/GifsContext'
 
 import { getGif } from '../services/gifs'
 
@@ -10,10 +12,12 @@ import '../assets/css/layout/Details.css'
 
 export default function Details ({ params }) {
   const { id } = params
-
+  const { gifs } = useContext(GifsContext)
   const [gif, setGif] = useState({})
 
   useEffect(() => {
+    if (gifs.length) setGif(gifs.find(gif => gif.id === id))
+
     getGif({ id })
       .then(setGif)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps

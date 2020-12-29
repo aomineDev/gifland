@@ -10,7 +10,6 @@ export default function Gif ({ id, url, title }) {
           src={url}
           alt={title}
           title={title}
-          loading='lazy'
         />
       </Link>
     </div>

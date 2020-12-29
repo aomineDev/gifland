@@ -16,12 +16,15 @@ export default function Header () {
   const [isActive, setIsActive] = useState(false)
   const [isSearchBarActive, setIsSearchBarActive] = useState(false)
   
+  const [location, setLocation] = useLocation()
+  
   const [query, setQuery] = useInput('')
 
-
-  const [location, setLocation] = useLocation()
-
   const isScrollEnable = location === '/'
+
+  const headerClassName = `Header ${isActive ? 'active' : ''}`
+
+  const headerFormClassName = `Header-form ${isSearchBarActive ? 'active' : ''}`
 
   useScroll({
     handleScroll,
@@ -33,9 +36,6 @@ export default function Header () {
     else if (window.scrollY === 0) setIsActive(false)
   }, [isScrollEnable])
 
-  const headerClassName = `Header ${isActive ? 'active' : ''}`
-
-  const headerFormClassName = `Header-form ${isSearchBarActive ? 'active' : ''}`
 
   function handleScroll () {
     if (window.scrollY !== 0) return setIsActive(true)
@@ -50,7 +50,7 @@ export default function Header () {
     
     const queryBackUp = query
 
-    setQuery('')
+    setQuery(e, true)
 
     setLocation(`/search/${queryBackUp}`)
   }

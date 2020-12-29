@@ -4,8 +4,6 @@ import Container from '../components/layout/Container'
 import Title from '../components/Title/index'
 import ListOfGifs from '../components/ListOfGifs'
 
-import Ab from './tst1'
-import Abc from './test2'
 export default function Search ({ params }) {
   const { query } = params
 
@@ -16,10 +14,8 @@ export default function Search ({ params }) {
   })
   
   return (
-    <section>
+    <section className="Search">
       <Container withHeader withTop>
-        <Ab />
-        <Abc />
         <Title title={`Resultados de '${query}'`} />
         <ListOfGifs gifs={gifs} />
       </Container>

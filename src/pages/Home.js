@@ -7,13 +7,13 @@ import Title from '../components/Title/index'
 import ListOfGifs from '../components/ListOfGifs'
 
 export default function Home () {
-  const {gifs } = useGifs({
+  const { gifs } = useGifs({
     type: 'trending',
     limit: 16
   })
 
   return (
-    <section>
+    <section className="Home">
       <Hero />
       <Container>
         <Title title="Trending" />
