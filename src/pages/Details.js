@@ -9,8 +9,9 @@ import Profile from '../components/Profile'
 import '../assets/css/layout/Details.css'
 
 export default function Details ({ params }) {
-  const [gif, setGif] = useState({})
   const { id } = params
+
+  const [gif, setGif] = useState({})
 
   useEffect(() => {
     getGif({ id })

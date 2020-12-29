@@ -19,6 +19,7 @@
   height: 200px;
   border-radius: 50%;
   border: 15px solid var(--background-color);
+  background-color: var(--background-color);
   flex-shrink: 0;
 }
 .Profile-avatar img {
