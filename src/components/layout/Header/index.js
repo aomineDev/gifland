@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'wouter'
 
+import useInput from '../../../hooks/useInput'
+
 import useScroll from '../../../hooks/useScroll'
 
 import Container from '../Container'
@@ -13,7 +15,9 @@ import timesIcon from '../../../assets/icons/times.svg'
 export default function Header () {
   const [isActive, setIsActive] = useState(false)
   const [isSearchBarActive, setIsSearchBarActive] = useState(false)
-  const [query, setQuery] = useState('')
+  
+  const [query, setQuery] = useInput('')
+
 
   const [location, setLocation] = useLocation()
 
@@ -37,10 +41,6 @@ export default function Header () {
     if (window.scrollY !== 0) return setIsActive(true)
 
     if (window.scrollY === 0) return setIsActive(false)
-  }
-
-  function handleChange (e) {
-    setQuery(e.target.value)
   }
 
   function handleSubmit (e) {
@@ -71,7 +71,7 @@ export default function Header () {
             type="search"
             placeholder="Search a Gif here..."
             className="Header-search"
-            onChange={handleChange}
+            onChange={setQuery}
             value={query}
           />
           <button className="Header-search-btn" onClick={handleClick} type="button">

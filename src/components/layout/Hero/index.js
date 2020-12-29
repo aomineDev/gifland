@@ -1,18 +1,17 @@
-import { useState } from 'react'
 import { useLocation } from 'wouter'
+
+import useInput from '../../../hooks/useInput'
 
 import './styles.css'
 
 export default function Hero () {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useInput('')
   const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
-
-  function handleChange (e) {
-    setQuery(e.target.value)
-  }
 
   function handleSubmit (e) {
     e.preventDefault()
+
+    if (!query) return
 
     setLocation(`/search/${query}`)
   }
@@ -32,7 +31,7 @@ export default function Hero () {
               type="search"
               placeholder="Search a Gif here..."
               className="Hero-search"
-              onChange={handleChange}
+              onChange={setQuery}
             />
           </form>
         </div>
