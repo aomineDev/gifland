@@ -10,13 +10,15 @@ export default function Search ({ params }) {
   const { gifs } = useGifs({
     type: 'search',
     query,
-    limit: 8
+    limit: 16
   })
+
+  const result = query.replaceAll('%20', ' ')
   
   return (
     <section className="Search">
       <Container withHeader withTop>
-        <Title title={`Resultados de '${query}'`} />
+        <Title title={`Resultados de '${result}'`} />
         <ListOfGifs gifs={gifs} />
       </Container>
     </section>
