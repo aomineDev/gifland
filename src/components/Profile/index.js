@@ -1,5 +1,5 @@
-import Container from '../layout/Container'
-import Verified from '../Verified'
+import Container from 'components/layout/Container'
+import Verified from 'components/Verified'
 
 import './styles.css'
 

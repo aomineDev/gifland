@@ -2,6 +2,7 @@
   columns: 280px auto;
   column-gap: 10px;
   max-width: 1440px;
+  min-height: 500px;
   margin-right: auto;
   margin-left: auto;
 }

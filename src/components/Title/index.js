@@ -1,7 +1,7 @@
 import './styles.css'
 
-export default function Title ({ title }) {
+export default function Title ({ children }) {
   return (
-    <h2 className="Title">{title}</h2>
+    <h2 className="Title">{children}</h2>
   )
 }

@@ -1,5 +1,5 @@
-import Gif from '../Gif'
-import Loader from '../shared/Loader'
+import Gif from 'components/Gif'
+import Loader from 'components/shared/Loader'
 
 import './styles.css'
 

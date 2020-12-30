@@ -1,8 +1,8 @@
 import { useEffect, useContext } from 'react'
 
-import GifsContext from '../context/GifsContext'
+import GifsContext from 'context/GifsContext'
 
-import { getGifs } from '../services/gifs'
+import { getGifs } from 'services/gifs'
 
 export default function useGifs ({ type, query, limit }) {
   const { gifs, setGifs } = useContext(GifsContext)

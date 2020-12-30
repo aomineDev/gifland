@@ -1,4 +1,6 @@
-import config from '../config'
+import config from 'config'
+
+const service = 'gifs'
 
 export function getGifs ({ type, query, limit = 8 } = {}) {
   const offset = '0'
@@ -6,8 +8,8 @@ export function getGifs ({ type, query, limit = 8 } = {}) {
   const lang = 'en'
 
   const apiURL = type === 'trending' 
-  ? `${config.apiBaseURL}/trending?api_key=${config.apiKey}&limit=${limit}&rating=${rating}` 
-  : `${config.apiBaseURL}/search?api_key=${config.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`
+  ? `${config.apiBaseURL}/${service}/trending?api_key=${config.apiKey}&limit=${limit}&rating=${rating}` 
+  : `${config.apiBaseURL}/${service}/search?api_key=${config.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`
 
   return fetch(apiURL)
     .then(response => response.json())
@@ -19,7 +21,7 @@ export function getGifs ({ type, query, limit = 8 } = {}) {
 }
 
 export function getGif ({ id }) {
-  const apiURL = `${config.apiBaseURL}/${id}?api_key=${config.apiKey}`
+  const apiURL = `${config.apiBaseURL}/${service}/${id}?api_key=${config.apiKey}`
 
   return fetch(apiURL)
     .then(response => response.json())

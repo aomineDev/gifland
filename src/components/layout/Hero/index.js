@@ -1,6 +1,6 @@
 import { useLocation } from 'wouter'
 
-import useInput from '../../../hooks/useInput'
+import useInput from 'hooks/useInput'
 
 import './styles.css'
 

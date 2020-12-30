@@ -1,0 +1,12 @@
+.Trending {
+  margin-top: var(--center-size);
+  padding-bottom: 10px;
+}
+.Trending-terms {
+  display: inline-block;
+  width: 200px;
+  padding-bottom: 10px;
+}
+.Trending-terms:hover {
+  text-decoration: underline;
+}

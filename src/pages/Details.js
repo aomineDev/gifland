@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from 'react'
 
-import GifsContext from '../context/GifsContext'
+import GifsContext from 'context/GifsContext'
 
-import { getGif } from '../services/gifs'
+import { getGif } from 'services/gifs'
 
-import Container from '../components/layout/Container'
-import Loader from '../components/shared/Loader'
-import Profile from '../components/Profile'
+import Container from 'components/layout/Container'
+import Loader from 'components/shared/Loader'
+import Profile from 'components/Profile'
 
-import '../assets/css/layout/Details.css'
+import 'assets/css/layout/Details.css'
 
 export default function Details ({ params }) {
   const { id } = params
@@ -31,7 +31,7 @@ export default function Details ({ params }) {
   }
   
   return (
-    <section className="Details">
+    <div className="Details">
       <Profile user={gif.user} />
       <Container  withTop={!gif.user} withHeader={!gif.user}>
         <div className="Details-gif-wrapper">
@@ -42,6 +42,6 @@ export default function Details ({ params }) {
           <p className="Details-gif-datetime">{gif.dateTime}</p>
         </div>
       </Container>
-    </section>
+    </div>
   )
 }

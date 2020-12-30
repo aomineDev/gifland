@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'wouter'
 
-import useInput from '../../../hooks/useInput'
+import useInput from 'hooks/useInput'
 
-import useScroll from '../../../hooks/useScroll'
+import useScroll from 'hooks/useScroll'
 
 import Container from '../Container'
 
 import './styles.css'
 
-import searchIcon from '../../../assets/icons/search.svg'
-import timesIcon from '../../../assets/icons/times.svg'
+import searchIcon from 'assets/icons/search.svg'
+import timesIcon from 'assets/icons/times.svg'
 
 export default function Header () {
   const [isActive, setIsActive] = useState(false)

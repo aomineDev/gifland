@@ -1,8 +1,8 @@
-import useGifs from '../hooks/useGifs'
+import useGifs from 'hooks/useGifs'
 
-import Container from '../components/layout/Container'
-import Title from '../components/Title/index'
-import ListOfGifs from '../components/ListOfGifs'
+import Container from 'components/layout/Container'
+import Title from 'components/Title/index'
+import ListOfGifs from 'components/ListOfGifs'
 
 export default function Search ({ params }) {
   const { query } = params
@@ -13,14 +13,14 @@ export default function Search ({ params }) {
     limit: 16
   })
 
-  const result = query.replaceAll('%20', ' ')
+  const result = decodeURI(query)
   
   return (
-    <section className="Search">
+    <div className="Search">
       <Container withHeader withTop>
-        <Title title={`Resultados de '${result}'`} />
+        <Title>Resultados de '{result}'</Title>
         <ListOfGifs gifs={gifs} />
       </Container>
-    </section>
+    </div>
   )
 }

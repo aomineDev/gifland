@@ -1,10 +1,11 @@
-import useGifs from '../hooks/useGifs'
+import useGifs from 'hooks/useGifs'
 
-import Container from '../components/layout/Container'
+import Container from 'components/layout/Container'
 
-import Hero from '../components/layout/Hero'
-import Title from '../components/Title/index'
-import ListOfGifs from '../components/ListOfGifs'
+import Hero from 'components/layout/Hero'
+import Title from 'components/Title/index'
+import ListOfGifs from 'components/ListOfGifs'
+import TrendingTerms from 'components/TrendingTerms'
 
 export default function Home () {
   const { gifs } = useGifs({
@@ -13,12 +14,13 @@ export default function Home () {
   })
 
   return (
-    <section className="Home">
+    <div className="Home">
       <Hero />
       <Container>
-        <Title title="Trending" />
+        <Title>Trending Gifs</Title>
         <ListOfGifs gifs={gifs} />
+        <TrendingTerms />
       </Container>
-    </section>
+    </div>
   )
 }
