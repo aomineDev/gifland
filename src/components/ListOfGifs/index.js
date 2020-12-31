@@ -4,7 +4,7 @@ import Loader from 'components/shared/Loader'
 import './styles.css'
 
 export default function ListOfGifs ({ gifs }) {
-  if (!gifs.length) return <Loader />
+  if (!gifs.length) return <Loader isLoading />
 
   return (
     <section className='Gifs'>

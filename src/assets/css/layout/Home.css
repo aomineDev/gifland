@@ -1,0 +1,26 @@
+.next-page-btn-wrapper {
+  padding-top: 40px;
+  text-align: center;
+}
+.next-page-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: var(--header-color);
+  border-radius: 4px;
+  transition: .3s;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.next-page-btn:hover {
+  transform: translate(10px, -10px);
+  box-shadow: -1px 1px 0 rgba(0, 0, 0, 1),
+  -2px 2px 0 rgba(0, 0, 0, 1),
+  -3px 3px 0 rgba(0, 0, 0, 1),
+  -4px 4px 0 rgba(0, 0, 0, 1),
+  -5px 5px 0 rgba(0, 0, 0, 1),
+  -6px 6px 0 rgba(0, 0, 0, 1),
+  -7px 7px 0 rgba(0, 0, 0, 1),
+  -8px 8px 0 rgba(0, 0, 0, 1),
+  -9px 9px 0 rgba(0, 0, 0, 1),
+  -10px 10px 0 rgba(0, 0, 0, 1);
+}

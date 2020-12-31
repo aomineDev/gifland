@@ -5,12 +5,12 @@ import useInput from 'hooks/useInput'
 
 import useScroll from 'hooks/useScroll'
 
-import Container from '../Container'
-
-import './styles.css'
+import Container from 'components/layout/Container'
 
 import searchIcon from 'assets/icons/search.svg'
 import timesIcon from 'assets/icons/times.svg'
+
+import './styles.css'
 
 export default function Header () {
   const [isActive, setIsActive] = useState(false)

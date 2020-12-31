@@ -2,13 +2,13 @@ import config from 'config'
 
 const service = 'gifs'
 
-export function getGifs ({ type, query, limit = 8 } = {}) {
-  const offset = '0'
+export function getGifs ({ type, query, limit = 8, page = 0 } = {}) {
+  const offset = page * limit
   const rating = 'g'
   const lang = 'en'
 
   const apiURL = type === 'trending' 
-  ? `${config.apiBaseURL}/${service}/trending?api_key=${config.apiKey}&limit=${limit}&rating=${rating}` 
+  ? `${config.apiBaseURL}/${service}/trending?api_key=${config.apiKey}&limit=${limit}&rating=${rating}&offset=${offset}` 
   : `${config.apiBaseURL}/${service}/search?api_key=${config.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=${rating}&lang=${lang}`
 
   return fetch(apiURL)

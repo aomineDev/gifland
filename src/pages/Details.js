@@ -25,7 +25,7 @@ export default function Details ({ params }) {
   if (!gif.url) {
     return (
       <Container withHeader>
-        <Loader />
+        <Loader isLoading />
       </Container>
     )
   }
