@@ -1,6 +1,5 @@
 import { useLayoutEffect } from 'react'
 
-
 export default function useScroll ({ handleScroll, isScrollEnable }) {
   useLayoutEffect(() => {
     if (!isScrollEnable) return

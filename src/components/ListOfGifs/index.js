@@ -3,19 +3,29 @@ import Loader from 'components/shared/Loader'
 
 import './styles.css'
 
-export default function ListOfGifs ({ gifs }) {
-  if (!gifs.length) return <Loader isLoading />
+export default function ListOfGifs ({ gifs, useColumns, useGrid, masonry, squares
+}) {
+  let gifsClassName = 'Gifs '
+
+  if (useColumns) gifsClassName += 'columns '
+  if (useGrid) gifsClassName += 'grid '
+  if (masonry) gifsClassName += 'masonry '
+  if (squares) gifsClassName += 'squares'
 
   return (
-    <section className='Gifs'>
-      {gifs.map(({ id, title, url }) => (
-        <Gif
-          key={id}
-          id={id}
-          url={url}
-          title={title}
-        />
-      ))}
-    </section>
+    <>
+      <Loader isLoading={!gifs.length} />
+      <section className={gifsClassName}>
+        {gifs.map(({ id, title, url }) => (
+          <Gif
+            key={id}
+            id={id}
+            url={url}
+            title={title}
+          />
+        ))}
+      </section>
+    </>
+    
   )
 } 

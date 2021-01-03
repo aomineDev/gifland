@@ -18,15 +18,17 @@ export default function TrendingTerms () {
   return (
     <section className="Trending">
       <Title>Trending Terms</Title>
-      {trendingTerms.map((term, index) => (
-        <Link
-          to={`/search/${term}`}
-          key={index}
-          className="Trending-terms"
-        >
-          {term}
-        </Link>
-      ))}
+      <nav>
+        {trendingTerms.map((term, index) => (
+          <Link
+            to={`/search/${term}`}
+            key={index}
+            className="Trending-terms"
+          >
+            {term}
+          </Link>
+        ))}
+      </nav>
     </section>
   )
 }

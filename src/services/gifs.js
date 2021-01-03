@@ -2,7 +2,7 @@ import config from 'config'
 
 const service = 'gifs'
 
-export function getGifs ({ type, query, limit = 8, page = 0 } = {}) {
+export function getGifs ({ type = 'search', query = '', limit = 16, page = 0 } = {}) {
   const offset = page * limit
   const rating = 'g'
   const lang = 'en'

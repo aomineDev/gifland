@@ -1,9 +1,25 @@
 .Gifs {
-  columns: 280px auto;
-  column-gap: 10px;
   max-width: 1440px;
-  min-height: 500px;
+  min-height: 700px;
   margin-right: auto;
   margin-left: auto;
+  column-gap: 10px;
 }
-
+.Gifs.columns {
+  columns: 280px auto;
+}
+.Gifs.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.Gifs.grid.masonry {
+  grid-template-rows: masonry;
+}
+.Gifs.grid.squares > .Gif {
+  max-height: 280px;
+}
+.Gifs.grid.squares > .Gif img {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}

@@ -20,11 +20,11 @@ export default function Header () {
   
   const [query, setQuery] = useInput('')
 
-  const isScrollEnable = location === '/'
-
   const headerClassName = `Header ${isActive ? 'active' : ''}`
 
   const headerFormClassName = `Header-form ${isSearchBarActive ? 'active' : ''}`
+
+  const isScrollEnable = location === '/'
 
   useScroll({
     handleScroll,
@@ -35,7 +35,6 @@ export default function Header () {
     if (!isScrollEnable) setIsActive(true)
     else if (window.scrollY === 0) setIsActive(false)
   }, [isScrollEnable])
-
 
   function handleScroll () {
     if (window.scrollY !== 0) return setIsActive(true)

@@ -4,7 +4,7 @@ import './styles.css'
 
 export default function Gif ({ id, url, title }) {
   return (
-    <div className='Gif'>
+    <figure className='Gif'>
       <Link to={`/details/${id}`}>
         <img
           src={url}
@@ -12,6 +12,6 @@ export default function Gif ({ id, url, title }) {
           title={title}
         />
       </Link>
-    </div>
+    </figure>
   )
 }
