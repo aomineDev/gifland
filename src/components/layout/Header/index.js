@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'wouter'
 
 import useInput from 'hooks/useInput'
@@ -17,19 +17,14 @@ export default function Header () {
   const [isSearchBarActive, setIsSearchBarActive] = useState(false)
   
   const [location, setLocation] = useLocation()
-  
   const [query, setQuery] = useInput('')
 
   const headerClassName = `Header ${isActive ? 'active' : ''}`
-
   const headerFormClassName = `Header-form ${isSearchBarActive ? 'active' : ''}`
 
   const isScrollEnable = location === '/'
-
-  useScroll({
-    handleScroll,
-    isScrollEnable
-  })
+  const headerEl = useRef()
+  useScroll({ handleScroll, isScrollEnable })
 
   useEffect(() => {
     if (!isScrollEnable) setIsActive(true)
@@ -37,9 +32,13 @@ export default function Header () {
   }, [isScrollEnable])
 
   function handleScroll () {
-    if (window.scrollY !== 0) return setIsActive(true)
+    const cotainsActiveClassName = headerEl.current.classList.contains('active')
+    const scrollPosition = window.scrollY
+  
+    if (scrollPosition && cotainsActiveClassName) return
 
-    if (window.scrollY === 0) return setIsActive(false)
+    if (scrollPosition) return setIsActive(true)
+    if (!scrollPosition) return setIsActive(false)
   }
 
   function handleSubmit (e) {
@@ -59,7 +58,7 @@ export default function Header () {
   }
 
   return (
-    <header className={headerClassName}>
+    <header className={headerClassName} ref={headerEl}>
       <Container>
         <Link to='/' className="Header-title">Gifland</Link>
         <button className="Header-search-btn" onClick={handleClick}>

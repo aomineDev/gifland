@@ -13,11 +13,9 @@ import Loader from 'components/shared/Loader'
 
 export default function Home () {
   const { gifs, isNextPageLoading, setNewReq } = useGifs({ type: 'trending' })
-  const [isNearScreen, elRef] = useNearScreen({ distance: 50 })
+  const [isNearScreen, elRef] = useNearScreen({ distance: 100 })
 
   useEffect(() => {
-    
-
     if (isNearScreen) setNewReq(prevReq => prevReq + 1)
   }, [isNearScreen]) // eslint-disable-line react-hooks/exhaustive-deps
  
