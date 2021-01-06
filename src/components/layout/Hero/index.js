@@ -1,10 +1,11 @@
+import { memo } from 'react'
 import { useLocation } from 'wouter'
 
 import useInput from 'hooks/useInput'
 
 import './styles.css'
 
-export default function Hero () {
+function Hero () {
   const [query, setQuery] = useInput('')
   const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
 
@@ -44,3 +45,5 @@ export default function Hero () {
     </>
   )
 }
+
+export default memo(Hero)

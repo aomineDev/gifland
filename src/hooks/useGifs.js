@@ -20,6 +20,7 @@ export default function useGifs ({ type, query, limit }) {
       if (query in lib) {
         setGifs(lib[query].gifs)
         setPage(lib[query].page)
+
         return
       } else {
         setPage(0)
