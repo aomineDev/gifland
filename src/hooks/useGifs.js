@@ -13,8 +13,8 @@ export default function useGifs ({ type, query, limit }) {
   const { gifs, setGifs, lib, setLib } = useContext(GifsContext)
 
   useEffect(() => {
-    setIsFull(false)
-    setNewReq(0)
+    isFull && setIsFull(false)
+    newReq && setNewReq(0)
 
     if (gifs.length) {
       if (query in lib) {
@@ -23,7 +23,7 @@ export default function useGifs ({ type, query, limit }) {
 
         return
       } else {
-        setPage(0)
+        page && setPage(0)
         setGifs([])
       }
     }
@@ -33,6 +33,7 @@ export default function useGifs ({ type, query, limit }) {
         setGifs(newGifs)
         
         if (!query) return
+
         const newLib = { ...lib }
         
         newLib[query] = {
@@ -67,6 +68,7 @@ export default function useGifs ({ type, query, limit }) {
         setGifs(prevGifs => prevGifs.concat(newGifs))
          
         if (!query) return
+
         const prevGifs = lib[query].gifs
         const newLib = { ...lib }
 

@@ -1,8 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
+import { Redirect } from 'wouter'
 
-import GifsContext from 'context/GifsContext'
-
-import { getGif } from 'services/gifs'
+import useGif from 'hooks/useGif'
 
 import Container from 'components/layout/Container'
 import Loader from 'components/shared/Loader'
@@ -12,23 +10,18 @@ import 'assets/css/layout/Details.css'
 
 export default function Details ({ params }) {
   const { id } = params
-  const { gifs } = useContext(GifsContext)
-  const [gif, setGif] = useState({})
 
-  useEffect(() => {
-    if (gifs.length) setGif(gifs.find(gif => gif.id === id))
+  const { gif, isLoading, isError } = useGif({ id })
 
-    getGif({ id })
-      .then(setGif)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (!gif.url) {
+  if (isLoading) {
     return (
       <Container withHeader>
         <Loader isLoading />
       </Container>
     )
   }
+
+  if (isError) return <Redirect to='/404' />
   
   return (
     <div className="Details">
