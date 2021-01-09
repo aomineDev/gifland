@@ -33,7 +33,7 @@ function Hero () {
           <p className="Hero-text">
             Bienvenido a la tierra de los gifs.
             <br />
-            Aqui podras encontrar gifs de todo lo que deses.
+            Aqui podras encontrar gifs de todo lo que desees.
           </p>
           <form onSubmit={handleSubmit}>
             <input
@@ -43,7 +43,7 @@ function Hero () {
               onChange={setQuery}
             />
             <select value={rating} onChange={handleChange} className='Hero-select'>
-              {RATINGS.map(e => <option key={e} value={e}>{e}</option>)}
+              {RATINGS.map(e => <option key={e} value={e} className='Hero-select-option'>{e}</option>)}
             </select>
           </form>
         </div>

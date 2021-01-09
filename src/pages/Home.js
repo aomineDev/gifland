@@ -11,7 +11,7 @@ import ListOfGifs from 'components/ListOfGifs'
 import Loader from 'components/shared/Loader'
 
 export default function Home () {
-  const { gifs, isNextPageLoading, setNewReq } = useGifs({ type: 'trending' })
+  const { gifs, isLoading, isNextPageLoading, setNewReq } = useGifs({ type: 'trending' })
   const [isNearScreen, elRef] = useNearScreen({ distance: 200 })
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Home () {
         <Hero />
         <Container>
           <Title>Trending Gifs</Title>
-          <ListOfGifs gifs={gifs} useGrid masonryRow />
+          <ListOfGifs gifs={gifs} isLoading={isLoading} useGrid masonryRow />
           <Loader isLoading={isNextPageLoading} />
           <div className='infinite-scroll' ref={elRef}></div>
         </Container>

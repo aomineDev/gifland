@@ -6,21 +6,27 @@ import { getGifs } from 'services/gifs'
 
 export default function useGifs ({ type, query, limit, rating }) {
   const [isNextPageLoading, setIsNextPageLoading] = useState(false)
-  const [newReq, setNewReq] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
   const [isFull, setIsFull] = useState(false)
+  const [newReq, setNewReq] = useState(0)
   const [page, setPage] = useState(0)
 
   const { gifs, setGifs, lib, setLib } = useContext(GifsContext)
 
+  const key = `${query}-${rating || 'g'}`
+
   useEffect(() => {
+    setIsLoading(true)
+
     isFull && setIsFull(false)
     newReq && setNewReq(0)
 
     if (gifs.length) {
-      if (query in lib) {
-        setGifs(lib[query].gifs)
-        setPage(lib[query].page)
-
+      if (key in lib) {
+        setGifs(lib[key].gifs)
+        setPage(lib[key].page)
+        
+        setIsLoading(false)
         return
       } else {
         page && setPage(0)
@@ -36,14 +42,15 @@ export default function useGifs ({ type, query, limit, rating }) {
 
         const newLib = { ...lib }
         
-        newLib[query] = {
+        newLib[key] = {
           gifs: newGifs,
           page: 0          
         }
         
         setLib(newLib)
       })
-  }, [query]) // eslint-disable-line react-hooks/exhaustive-deps
+      .finally(() => setIsLoading(false))
+  }, [query, rating]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!newReq) return
@@ -57,7 +64,7 @@ export default function useGifs ({ type, query, limit, rating }) {
   useEffect(() => {
     if (!page) return
 
-    if (lib[query]?.page === page) return
+    if (lib[key]?.page === page) return
 
     setIsNextPageLoading(true)
 
@@ -69,10 +76,10 @@ export default function useGifs ({ type, query, limit, rating }) {
          
         if (!query) return
 
-        const prevGifs = lib[query].gifs
+        const prevGifs = lib[key].gifs
         const newLib = { ...lib }
 
-        newLib[query] = {
+        newLib[key] = {
           gifs: prevGifs.concat(newGifs),
           page
         }
@@ -82,5 +89,5 @@ export default function useGifs ({ type, query, limit, rating }) {
       .finally(() => setIsNextPageLoading(false))
   }, [page]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  return { gifs, isNextPageLoading, isFull, setNewReq }
+  return { gifs, isLoading, isNextPageLoading, isFull, setNewReq }
 }

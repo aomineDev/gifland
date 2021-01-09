@@ -13,7 +13,7 @@ import 'assets/css/layout/Search.css'
 export default function Search ({ params }) {
   const { query, rating } = params
 
-  const { gifs, isNextPageLoading, isFull, setNewReq } = useGifs({ query, rating })
+  const { gifs, isLoading, isNextPageLoading, isFull, setNewReq } = useGifs({ query, rating })
 
   const result = decodeURI(query)
 
@@ -36,7 +36,7 @@ export default function Search ({ params }) {
       <div className="Search">
         <Container withHeader withTop>
           <Title>{title}</Title>
-          <ListOfGifs gifs={gifs} useGrid masonryRow />
+          <ListOfGifs gifs={gifs} isLoading={isLoading} useGrid masonryRow />
           <Loader isLoading={isNextPageLoading} />
           {
             !isFull && (
