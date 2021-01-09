@@ -65,6 +65,11 @@
   cursor: pointer;
   filter: invert(.5);
 }
+
+.Hero-select {
+  color: #000;
+}
+
 @media screen and (max-width: 768px) {
   .Hero-search {
     width: 100%;

@@ -3,13 +3,14 @@ import Loader from 'components/shared/Loader'
 
 import './styles.css'
 
-export default function ListOfGifs ({ gifs, useColumns, useGrid, masonry, squares
+export default function ListOfGifs ({ gifs, useColumns, useGrid, masonryRow, masonryCol, squares
 }) {
   let gifsClassName = 'Gifs '
 
   if (useColumns) gifsClassName += 'columns '
   if (useGrid) gifsClassName += 'grid '
-  if (masonry) gifsClassName += 'masonry '
+  if (masonryRow) gifsClassName += 'masonry-row '
+  if (masonryCol) gifsClassName += 'masonry-col '
   if (squares) gifsClassName += 'squares'
 
   return (

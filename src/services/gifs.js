@@ -2,9 +2,8 @@ import config from 'config'
 
 const service = 'gifs'
 
-export function getGifs ({ type = 'search', query = '', limit = 16, page = 0 } = {}) {
+export function getGifs ({ type = 'search', query = '', limit = 16, rating = 'g',page = 0 } = {}) {
   const offset = page * limit
-  const rating = 'g'
   const lang = 'en'
 
   const apiURL = type === 'trending' 

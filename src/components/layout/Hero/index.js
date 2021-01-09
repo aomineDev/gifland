@@ -1,11 +1,15 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { useLocation } from 'wouter'
 
 import useInput from 'hooks/useInput'
 
 import './styles.css'
 
+const RATINGS = [ 'g', 'pg', 'pg-13', 'r']
+
 function Hero () {
+  const [rating, setRating] = useState('g')
+
   const [query, setQuery] = useInput('')
   const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
 
@@ -14,7 +18,11 @@ function Hero () {
 
     if (!query) return
 
-    setLocation(`/search/${query}`)
+    setLocation(`/search/${query}/${rating}`)
+  }
+
+  function handleChange (e) {
+    setRating(e.target.value)
   }
 
   return (
@@ -34,6 +42,9 @@ function Hero () {
               className="Hero-search"
               onChange={setQuery}
             />
+            <select value={rating} onChange={handleChange} className='Hero-select'>
+              {RATINGS.map(e => <option key={e} value={e}>{e}</option>)}
+            </select>
           </form>
         </div>
       </section>

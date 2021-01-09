@@ -4,7 +4,7 @@ import GifsContext from 'context/GifsContext'
 
 import { getGifs } from 'services/gifs'
 
-export default function useGifs ({ type, query, limit }) {
+export default function useGifs ({ type, query, limit, rating }) {
   const [isNextPageLoading, setIsNextPageLoading] = useState(false)
   const [newReq, setNewReq] = useState(0)
   const [isFull, setIsFull] = useState(false)
@@ -28,7 +28,7 @@ export default function useGifs ({ type, query, limit }) {
       }
     }
 
-    getGifs({ type, query, limit })
+    getGifs({ type, query, limit, rating })
       .then(newGifs => {
         setGifs(newGifs)
         
@@ -61,7 +61,7 @@ export default function useGifs ({ type, query, limit }) {
 
     setIsNextPageLoading(true)
 
-    getGifs({ type, query, limit, page })
+    getGifs({ type, query, limit, rating, page })
       .then(newGifs => {
         if (!newGifs.length) return setIsFull(true)
  

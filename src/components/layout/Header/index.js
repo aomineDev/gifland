@@ -24,6 +24,7 @@ export default function Header () {
 
   const isScrollEnable = location === '/'
   const headerEl = useRef()
+
   useScroll({ handleScroll, isScrollEnable })
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function Header () {
     
     const queryBackUp = query
 
-    setQuery(e, true)
+    setQuery(e, { clear: true })
 
     setLocation(`/search/${queryBackUp}`)
   }

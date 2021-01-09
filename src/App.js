@@ -18,7 +18,7 @@ function App () {
         <Switch>
           <Route path='/' component={Home} />
           <Route path='/details/:id' component={Details} />
-          <Route path='/search/:query' component={Search} />
+          <Route path='/search/:query/:rating?' component={Search} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>

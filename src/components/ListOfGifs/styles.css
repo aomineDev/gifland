@@ -1,20 +1,76 @@
+:root {
+  --grid-column: 250px;
+  --grid-row: 250px;
+}
 .Gifs {
   max-width: 1440px;
   min-height: 700px;
   margin-right: auto;
   margin-left: auto;
-  column-gap: 10px;
+  gap: 10px;
 }
+
 .Gifs.columns {
   columns: 280px auto;
 }
+.Gifs.columns > .Gif {
+  padding-top: 10px;
+}
+
 .Gifs.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-column), 1fr));
 }
-.Gifs.grid.masonry {
+
+.Gifs.grid.masonry-row {
+  grid-auto-rows: var(--grid-row);
+  grid-auto-flow: row dense;
+}
+.Gifs.grid.masonry-row > .Gif,
+.Gifs.grid.masonry-row > .Gif img {
+  height: 100%;
+  object-fit: cover;
+}
+.Gifs.grid.masonry-row > .Gif:nth-child(11n + 1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.Gifs.grid.masonry-row > .Gif:nth-child(8n + 1) {
+	grid-column-end: span 2;
+  grid-row-end: span 2;
+}
+.Gifs.grid.masonry-row > .Gif:nth-child(10n + 3) {
+	grid-column: span 2;
+  grid-row: span 1;
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --grid-column: 180px;
+    --grid-row: 200px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  :root {
+    --grid-column: 300px;
+    --grid-row: 210px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Gifs.grid.masonry-row > .Gif:nth-child(11n + 1),
+  .Gifs.grid.masonry-row > .Gif:nth-child(8n + 1),
+  .Gifs.grid.masonry-row > .Gif:nth-child(10n + 3) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+.Gifs.grid.masonry-col {
   grid-template-rows: masonry;
 }
+
 .Gifs.grid.squares > .Gif {
   max-height: 280px;
 }
