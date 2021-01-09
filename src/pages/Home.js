@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import useNearScreen from 'hooks/useNearScreen'
-
+import { Helmet } from 'react-helmet'
 import useGifs from 'hooks/useGifs'
 
 import Container from 'components/layout/Container'
@@ -19,14 +19,24 @@ export default function Home () {
   }, [isNearScreen]) // eslint-disable-line react-hooks/exhaustive-deps
  
   return (
-    <div className='Home'>
-      <Hero />
-      <Container>
-        <Title>Trending Gifs</Title>
-        <ListOfGifs gifs={gifs} useGrid squares />
-        <Loader isLoading={isNextPageLoading} />
-        <div className='infinite-scroll' ref={elRef}></div>
-      </Container>
-    </div>
+    <>
+      <Helmet>
+        <title>Home | Gifland</title>
+        <meta
+          name="description"
+          content="Web site by search any gifs"
+        />
+      </Helmet>
+
+      <div className='Home'>
+        <Hero />
+        <Container>
+          <Title>Trending Gifs</Title>
+          <ListOfGifs gifs={gifs} useGrid squares />
+          <Loader isLoading={isNextPageLoading} />
+          <div className='infinite-scroll' ref={elRef}></div>
+        </Container>
+      </div>
+    </>
   )
 }
