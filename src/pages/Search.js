@@ -36,7 +36,12 @@ export default function Search ({ params }) {
       <div className="Search">
         <Container withHeader withTop>
           <Title>{title}</Title>
-          <ListOfGifs gifs={gifs} isLoading={isLoading} useGrid masonryRow />
+          <ListOfGifs
+            gifs={gifs}
+            isLoading={isLoading}
+            useGrid
+            masonryRow
+          />
           <Loader isLoading={isNextPageLoading} />
           {
             !isFull && (

@@ -32,7 +32,12 @@ export default function Home () {
         <Hero />
         <Container>
           <Title>Trending Gifs</Title>
-          <ListOfGifs gifs={gifs} isLoading={isLoading} useGrid masonryRow />
+          <ListOfGifs
+            gifs={gifs}
+            isLoading={isLoading}
+            useGrid
+            masonryRow
+          />
           <Loader isLoading={isNextPageLoading} />
           <div className='infinite-scroll' ref={elRef}></div>
         </Container>
