@@ -1,17 +1,16 @@
-import { memo, useState } from 'react'
+import { memo } from 'react'
 import { useLocation } from 'wouter'
 
-import useInput from 'hooks/useInput'
+import useSearchEngine from './hook'
 
 import './styles.css'
 
 const RATINGS = [ 'g', 'pg', 'pg-13', 'r']
 
 function Hero () {
-  const [rating, setRating] = useState('g')
-
-  const [query, setQuery] = useInput('')
   const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
+
+  const { query, setQuery, rating, setRating, times } = useSearchEngine()
 
   function handleSubmit (e) {
     e.preventDefault()
@@ -21,7 +20,11 @@ function Hero () {
     setLocation(`/search/${query}/${rating}`)
   }
 
-  function handleChange (e) {
+  function handleInputChange (e) {
+    setQuery(e.target.value)
+  }
+
+  function handleRatingChange (e) {
     setRating(e.target.value)
   }
 
@@ -40,12 +43,13 @@ function Hero () {
               type="search"
               placeholder="Search a Gif here..."
               className="Hero-search"
-              onChange={setQuery}
+              onChange={handleInputChange}
             />
-            <select value={rating} onChange={handleChange} className='Hero-select'>
+            <select value={rating} onChange={handleRatingChange} className='Hero-select'>
               {RATINGS.map(e => <option key={e} value={e} className='Hero-select-option'>{e}</option>)}
             </select>
           </form>
+          <p>{times}</p>
         </div>
       </section>
       <div className="Hero-bottom-wave">

@@ -16,7 +16,7 @@ export default function useGifs ({ type, query, limit, rating }) {
   const key = `${query}-${rating || 'g'}`
 
   useEffect(() => {
-    setIsLoading(true)
+    isLoading || setIsLoading(true)
 
     isFull && setIsFull(false)
     newReq && setNewReq(0)

@@ -58,7 +58,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 720px) {
   .Gifs.grid.masonry-row > .Gif:nth-child(11n + 1),
   .Gifs.grid.masonry-row > .Gif:nth-child(8n + 1),
   .Gifs.grid.masonry-row > .Gif:nth-child(10n + 3) {

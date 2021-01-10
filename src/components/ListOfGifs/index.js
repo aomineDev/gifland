@@ -13,7 +13,7 @@ export default function ListOfGifs ({ gifs, isLoading, useColumns, useGrid, maso
   if (masonryCol) gifsClassName += 'masonry-col '
   if (squares) gifsClassName += 'squares'
 
-  if (isLoading) return <Loader isLoading />
+  if (isLoading) return <Loader isLoading fullHeight />
 
   return (
     <section className={gifsClassName}>
