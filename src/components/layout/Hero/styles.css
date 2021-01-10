@@ -82,6 +82,10 @@
   opacity: 1;
 }
 
+.Hero-times {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 960px) {
   .Hero-search {
     width: 100%;
