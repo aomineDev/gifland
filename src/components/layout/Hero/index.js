@@ -49,7 +49,7 @@ function Hero () {
               {RATINGS.map(e => <option key={e} value={e} className='Hero-select-option'>{e}</option>)}
             </select>
           </form>
-          <p>{times}</p>
+          <p>query change times: {times}</p>
         </div>
       </section>
       <div className="Hero-bottom-wave">
