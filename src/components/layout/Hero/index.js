@@ -38,7 +38,7 @@ function Hero () {
             <br />
             Aqui podras encontrar gifs de todo lo que desees.
           </p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='Hero-form'>
             <input
               type="search"
               placeholder="Search a Gif here..."
