@@ -1,5 +1,5 @@
 import { Redirect } from 'wouter'
-import { Helmet } from 'react-helmet'
+import { Title, Meta } from 'react-head'
 
 import useGif from 'hooks/useGif'
 
@@ -17,9 +17,7 @@ export default function Details ({ params }) {
   if (isLoading) {
     return (
       <>
-        <Helmet>
-          <title>Details | Gifland</title>
-        </Helmet>
+        <Title>Details | Gifland</Title>
         
         <Container withHeader>
           <Loader isLoading />
@@ -32,13 +30,8 @@ export default function Details ({ params }) {
   
   return (
     <>
-      <Helmet>
-        <title>{`${gif.title} | Gifland`}</title>
-        <meta
-          name="description"
-          content={gif.title}
-        />
-      </Helmet>
+      <Title>{gif.title} | Gifland</Title>
+      <Meta name='description' content='gif.title' />
 
       <div className="Details">
         <Profile user={gif.user} />

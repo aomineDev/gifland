@@ -3,7 +3,7 @@ import { Link } from 'wouter'
 
 import { getTrendingTerms } from 'services/trending'
 
-import Title from 'components/Title'
+import SectionTitle from 'components/SectionTitle'
 
 import './styles.css'
 
@@ -17,7 +17,7 @@ export default function TrendingTerms () {
 
   return (
     <section className="Trending">
-      <Title>Trending Terms</Title>
+      <SectionTitle>Trending Terms</SectionTitle>
       <nav>
         {trendingTerms.map((term, index) => (
           <Link

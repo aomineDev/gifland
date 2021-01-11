@@ -1,9 +1,8 @@
 import { lazy, Suspense } from 'react'
+import { HeadProvider, Title } from 'react-head'
 import { Route, Switch } from 'wouter'
 
 import Header from 'components/layout/Header'
-
-import 'assets/css/layout/App.css'
 
 const Home = lazy(() => import('pages/Home'))
 const Details = lazy(() => import('pages/Details'))
@@ -12,7 +11,8 @@ const NotFound = lazy(() => import('pages/NotFound'))
 
 function App () {
   return (
-    <div className="App">
+    <HeadProvider>
+      <Title>Gifland</Title>
       <Header />
       <Suspense fallback={null}>
         <Switch>
@@ -22,7 +22,7 @@ function App () {
           <Route component={NotFound} />
         </Switch>
       </Suspense>
-    </div>
+    </HeadProvider>
   )
 }
 

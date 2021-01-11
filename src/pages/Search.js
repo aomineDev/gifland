@@ -1,9 +1,9 @@
-import { Helmet } from 'react-helmet'
+import { Title, Meta } from 'react-head'
 
 import useGifs from 'hooks/useGifs'
 
 import Container from 'components/layout/Container'
-import Title from 'components/Title/index'
+import SectionTitle from 'components/SectionTitle'
 import ListOfGifs from 'components/ListOfGifs'
 import TrendingTerms from 'components/TrendingTerms'
 import Loader from 'components/shared/Loader'
@@ -25,17 +25,12 @@ export default function Search ({ params }) {
 
   return (
     <>
-      <Helmet>
-        <title>{`${title} | Gifland`}</title>
-        <meta
-          name="description"
-          content={title}
-        />
-      </Helmet>
+      <Title>{title} | Gifland</Title>
+      <Meta name="description" content={title} />
 
       <div className="Search">
         <Container withHeader withTop>
-          <Title>{title}</Title>
+          <SectionTitle>{title}</SectionTitle>
           <ListOfGifs
             gifs={gifs}
             isLoading={isLoading}
