@@ -19,11 +19,14 @@ export default function Header () {
   const [location, setLocation] = useLocation()
   const [query, setQuery] = useInput('')
 
-  const headerClassName = `Header ${isActive ? 'active' : ''}`
-  const headerFormClassName = `Header-form ${isSearchBarActive ? 'active' : ''}`
-
   const isScrollEnable = location === '/'
   const headerEl = useRef()
+
+  let headerClassName = 'Header '
+  let headerFormClassName = 'Header-search-form '
+
+  if (isActive) headerClassName += 'active'
+  if (isSearchBarActive) headerFormClassName += 'active'
 
   useScroll({ handleScroll, isScrollEnable })
 
@@ -54,7 +57,7 @@ export default function Header () {
     setLocation(`/search/${queryBackUp}`)
   }
 
-  function handleClick () {
+  function handleIconClick () {
     setIsSearchBarActive(!isSearchBarActive)
   }
 
@@ -62,21 +65,28 @@ export default function Header () {
     <header className={headerClassName} ref={headerEl}>
       <Container>
         <Link to='/' className="Header-title">Gifland</Link>
-        <button className="Header-search-btn" onClick={handleClick}>
-          <img src={searchIcon} alt="search"/>
-        </button>
-        <form onSubmit={handleSubmit} className={headerFormClassName}>
-          <input
-            type="search"
-            placeholder="Search a Gif here..."
-            className="Header-search"
-            onChange={setQuery}
-            value={query}
-          />
-          <button className="Header-search-btn" onClick={handleClick} type="button">
-            <img src={timesIcon} alt="search"/>
-          </button>
-        </form>
+        <nav className="Header-nav">
+          <div className="Header-search">
+            <form onSubmit={handleSubmit} className={headerFormClassName}>
+              <input
+                type="search"
+                placeholder="Search a Gif here..."
+                className="Header-search-input"
+                onChange={setQuery}
+                value={query}
+              />
+              <button className="Header-search-btn" onClick={handleIconClick} type="button">
+                <img src={timesIcon} alt="search"/>
+              </button>
+            </form>
+            <button className="Header-search-btn" onClick={handleIconClick}>
+              <img src={searchIcon} alt="search"/>
+            </button>
+          </div>
+          <div className="Header-auth">
+            <Link to='/login' className="Header-auth-login">Log In</Link>
+          </div>
+        </nav>
       </Container>
     </header>
   )

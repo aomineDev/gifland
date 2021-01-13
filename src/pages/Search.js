@@ -6,6 +6,7 @@ import Container from 'components/layout/Container'
 import SectionTitle from 'components/SectionTitle'
 import ListOfGifs from 'components/ListOfGifs'
 import TrendingTerms from 'components/TrendingTerms'
+import Button from 'components/shared/Button'
 import Loader from 'components/shared/Loader'
 
 import 'assets/css/layout/Search.css'
@@ -19,7 +20,7 @@ export default function Search ({ params }) {
 
   const title = `Resultados de '${result}'`
 
-  function handleClick () {
+  function loadMore () {
     setNewReq(prevReq => prevReq + 1)
   }
 
@@ -41,7 +42,7 @@ export default function Search ({ params }) {
           {
             !isFull && (
               <div className="next-page-btn-wrapper">
-                <button onClick={handleClick} className="next-page-btn">Load More</button>
+                <Button handleClick={loadMore}>Load More</Button>
               </div>
             )
           }
