@@ -1,18 +1,18 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
-import GifsContext from 'context/GifsContext'
+import useGifsContext from 'hooks/useGifsContext'
 
 import { getGif } from 'services/gifs'
   
 export default function useGif ({ id }) {
-  const { gifs } = useContext(GifsContext)
+  const { gifs } = useGifsContext()
 
   const [gif, setGif] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
-    if (!id) return setIsError(true)
+    if (!id) return setHasError(true)
 
     setIsLoading(true)
 
@@ -27,10 +27,10 @@ export default function useGif ({ id }) {
       .then(setGif)
       .catch(err => {
         console.error(err)
-        setIsError(true)
+        setHasError(true)
       })
       .finally(() => setIsLoading(false))
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  return { gif, isLoading, isError }
+  return { gif, isLoading, hasError }
 }

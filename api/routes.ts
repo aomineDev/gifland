@@ -74,8 +74,15 @@ export const postLogin = async (ctx: RouterContext) => {
       header,
       payload
     })
+    
     ctx.response.status = 201
-    ctx.response.body = {jwt}
+    ctx.response.body = {
+      data: {
+        user,
+        jwt
+      },
+      message: 'login successfully'
+    }
   }
 }
 

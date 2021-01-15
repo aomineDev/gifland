@@ -2,9 +2,8 @@ import { useState } from 'react'
 import { Title } from 'react-head'
 import { useLocation } from 'wouter'
 
-import { login } from 'services/auth'
-
 import useInput from 'hooks/useInput'
+import useAuth from 'hooks/useAuth'
 
 import Button from 'components/shared/Button'
 
@@ -12,11 +11,12 @@ import 'assets/css/layout/Login.css'
 
 export default function Login () {
   const [isDisabled, setIsDisabled] = useState(false)
+  const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
 
   const [username, setUsername] = useInput('')
   const [password, setPassword] = useInput('')
 
-  const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
+  const { login } = useAuth()
 
   function handleSubmit (e) {
     e.preventDefault()
@@ -26,6 +26,8 @@ export default function Login () {
 
     login(credentials)
       .then(() => setLocation('/'))
+      .catch(err => console.error('[err] ' + err.message))
+      .finally(() => setIsDisabled(false))
   }
 
   return (

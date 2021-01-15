@@ -6,6 +6,7 @@ import useInput from 'hooks/useInput'
 import useScroll from 'hooks/useScroll'
 
 import Container from 'components/layout/Container'
+import AuthHeader from 'components/layout/AuthHeader'
 
 import searchIcon from 'assets/icons/search.svg'
 import timesIcon from 'assets/icons/times.svg'
@@ -83,9 +84,7 @@ export default function Header () {
               <img src={searchIcon} alt="search"/>
             </button>
           </div>
-          <div className="Header-auth">
-            <Link to='/login' className="Header-auth-login">Log In</Link>
-          </div>
+          <AuthHeader />
         </nav>
       </Container>
     </header>

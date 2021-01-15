@@ -2,7 +2,7 @@ import config from 'config'
 
 const { apiBaseUrl } = config.auth
 
-export function login (credentials) {
+export function signin (credentials) {
   const body = JSON.stringify(credentials)
 
   return fetch(`${apiBaseUrl}/login`, {
@@ -13,4 +13,5 @@ export function login (credentials) {
       }
     })
       .then(response => response.json())
+      .then(({ data }) => data)
 }

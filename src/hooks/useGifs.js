@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
-import GifsContext from 'context/GifsContext'
+import useGifsContext from 'hooks/useGifsContext'
 
 import { getGifs } from 'services/gifs'
 
@@ -11,7 +11,7 @@ export default function useGifs ({ type, query, limit, rating }) {
   const [newReq, setNewReq] = useState(0)
   const [page, setPage] = useState(0)
 
-  const { gifs, setGifs, lib, setLib } = useContext(GifsContext)
+  const { gifs, setGifs, lib, setLib } = useGifsContext({ readonly: false })
 
   const key = `${query}-${rating || 'g'}`
 

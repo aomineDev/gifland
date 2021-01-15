@@ -1,0 +1,52 @@
+.Header-search-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  filter: brightness(0) invert(1);
+}
+.Header-search-btn:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.Header-search-btn img {
+  width: 20px;
+}
+.Header.active .Header-search {
+  opacity: 1;
+  visibility: visible;
+}
+.Header-auth-btn {
+  font-size: 16px;
+  font-weight: 600;
+  background-color: transparent;
+  padding: 5px 15px;
+  border-radius: 4px;
+  transition: background-color .3s, color .3s;
+}
+.Header-btn-one {
+  border: 2px solid #fff;
+}
+.Header-btn-one:hover {
+  background-color: #fff;
+  color: #212121;
+}
+.Header-btn-two {
+  background-color: #fff;
+  border: 2px solid #fff;
+  color: #212121;
+}
+.Header-btn-two:hover {
+  background-color: transparent;
+  color: #fff;
+}
+.Header-auth-username {
+  border-right: 2px solid #fff;
+  padding-right: 20px;
+  margin-right: 20px;
+  font-weight: 600;
+  transition: text-decoration .3s;
+}
+.Header-auth-username:hover {
+  text-decoration: underline;
+}

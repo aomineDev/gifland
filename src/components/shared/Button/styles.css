@@ -8,7 +8,7 @@
   text-transform: uppercase;
   letter-spacing: 4px;
 }
-.btn.disabled {
+.btn:disabled {
   pointer-events: none;
   background-color: #333;
 }

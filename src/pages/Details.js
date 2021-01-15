@@ -12,7 +12,7 @@ import 'assets/css/layout/Details.css'
 export default function Details ({ params }) {
   const { id } = params
 
-  const { gif, isLoading, isError } = useGif({ id })
+  const { gif, isLoading, hasError } = useGif({ id })
 
   if (isLoading) {
     return (
@@ -26,7 +26,7 @@ export default function Details ({ params }) {
     )
   }
 
-  if (isError) return <Redirect to='/404' />
+  if (hasError) return <Redirect to='/404' />
   
   return (
     <>
