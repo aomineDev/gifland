@@ -12,7 +12,7 @@ import 'assets/css/layout/Login.css'
 export default function Login () {
   const [isDisabled, setIsDisabled] = useState(true)
 
-  const { login, isLoading, hasError, isLogged, setHasError } = useAuth()
+  const { isLogged, login, isLoading, hasError, setHasError } = useAuth()
   const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
   const [username, setUsername] = useInput('')
   const [password, setPassword] = useInput('')
@@ -25,6 +25,7 @@ export default function Login () {
     if (hasError) setHasError(false)
 
     if (username && password) setIsDisabled(false)
+    else setIsDisabled(true)
   }, [username, password]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleSubmit (e) {

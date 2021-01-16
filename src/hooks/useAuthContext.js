@@ -1,14 +1,11 @@
 import { useContext } from 'react'
 
-import AuthContext from 'context/AuthConext'
+import UserContext from 'context/UserContext'
 
 export default function useAuthContext ({ readonly = true } = {}) {
-  const { token, setToken } = useContext(AuthContext)
+  const { token, updateToken, removeUser } = useContext(UserContext)
 
-  if (!readonly) return { token, setToken }
-  if (!readonly) return { token, setToken }
-  if (!readonly) return { token, setToken }
-  if (!readonly) return { token, setToken }
+  if (!readonly) return { token, updateToken, removeUser }
 
   return { token }
 }

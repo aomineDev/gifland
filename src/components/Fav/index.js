@@ -13,9 +13,6 @@ export default function Fav ({ id }) {
 
   let isFav = favs.some(GifId => GifId === id)
 
-  console.log('rendering component')
-  console.log(favs, isFav)
-  console.log(id, token)
   let favIconClassName = 'Fav-icon'
 
   if (isFav) favIconClassName += ' is-fav'

@@ -8,28 +8,19 @@ export default function useUser () {
   const [isLoading, setIsLoading] = useState(false)
   const [hasError, setHasError] = useState(false)
 
-  const { profile, setUser } = useUserContext({ readonly: false })
+  const { updateFavs } = useUserContext({ readonly: false })
 
   const addToFav = useCallback(({ id, token }) => {
     setIsLoading(true)
     
     return createFav({ id, token })
-      .then(newFavs => {
-        const userData = {
-          profile,
-          favs: newFavs
-        }
-
-        setUser(userData)
-
-        window.sessionStorage.setItem('user', JSON.stringify(userData))
-      })
+      .then(updateFavs)
       .catch(err => {
         console.error('[err] ' + err.message)
         setHasError(true)
       })
       .finally(() => setIsLoading(false))
-  }, [setUser, profile])
+  }, [updateFavs])
 
   return {
     addToFav,
