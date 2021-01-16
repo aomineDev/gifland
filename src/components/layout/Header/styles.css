@@ -102,3 +102,18 @@
     top: 0;
   }
 }
+@media screen and (max-width: 480px) {
+  .Header-title {
+    display: none;
+  }
+  .Header-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .Header-auth {
+    order: 1;
+  }
+  .Header-search {
+    order: 2;
+  }
+}

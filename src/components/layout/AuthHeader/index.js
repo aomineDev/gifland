@@ -1,12 +1,14 @@
 import { Link } from 'wouter'
 
 import useAuth from 'hooks/useAuth'
+import useUserContext from 'hooks/useUserContext'
 
 import './styles.css'
 
 export default function AuthHeader () {
-  const { isLogged, user, logout } = useAuth()
-  console.log('debug', isLogged, user)
+  const { isLogged, logout } = useAuth()
+  const { profile } = useUserContext()
+
   function handleLogout () {
     logout()
   }
@@ -17,7 +19,7 @@ export default function AuthHeader () {
         isLogged
           ? (
             <>
-              <Link to='/user' className="Header-auth-username">{user.username}</Link>
+              <Link to='/user' className="Header-auth-username">{profile.username}</Link>
               <button className="Header-auth-btn Header-btn-two" onClick={handleLogout}>log out</button>
             </>
           )

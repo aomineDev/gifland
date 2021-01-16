@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Title } from 'react-head'
 import { useLocation } from 'wouter'
 
@@ -10,24 +10,31 @@ import Button from 'components/shared/Button'
 import 'assets/css/layout/Login.css'
 
 export default function Login () {
-  const [isDisabled, setIsDisabled] = useState(false)
-  const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
+  const [isDisabled, setIsDisabled] = useState(true)
 
+  const { login, isLoading, hasError, isLogged, setHasError } = useAuth()
+  const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
   const [username, setUsername] = useInput('')
   const [password, setPassword] = useInput('')
 
-  const { login } = useAuth()
+  useEffect(() => {
+    if (isLogged && !hasError) setLocation('/')
+  }, [isLogged]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (hasError) setHasError(false)
+
+    if (username && password) setIsDisabled(false)
+  }, [username, password]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleSubmit (e) {
     e.preventDefault()
-    setIsDisabled(true)
+
+    if (!username || !password) return
 
     const credentials = { username, password }
 
     login(credentials)
-      .then(() => setLocation('/'))
-      .catch(err => console.error('[err] ' + err.message))
-      .finally(() => setIsDisabled(false))
   }
 
   return (
@@ -42,17 +49,19 @@ export default function Login () {
             className="Login-input"
             placeholder="Username"
             onChange={setUsername}
-            disabled={isDisabled}
+            disabled={isLoading}
           />
           <input
             type="password"
             className="Login-input"
             placeholder="Password"
             onChange={setPassword}
-            disabled={isDisabled}
+            disabled={isLoading}
           />
+          {hasError && <p className="Login-error-message">Credenciales incorrectas</p>}
           <Button
             isDisabled={isDisabled}
+            isLoading={isLoading}
           >
             Login
           </Button>

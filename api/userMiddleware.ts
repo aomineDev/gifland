@@ -16,8 +16,8 @@ const userMiddleware = async (ctx: Context, next: Function) => {
   if (jwt) {
     // Validate JWT and if it is invalid delete from cookie
     const data: any = await validateJwt(jwt, Deno.env.get('JWT_KEY') || '');
-    
-    if (!data.isValid || data.isExpired) {
+
+    if (!data.signature) {
       ctx.cookies.delete('jwt');
       ctx.response.status = 401
     } else if (data) {

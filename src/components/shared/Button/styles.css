@@ -8,10 +8,14 @@
   text-transform: uppercase;
   letter-spacing: 4px;
 }
-.btn:disabled {
+.btn:disabled,
+.btn.loading {
   pointer-events: none;
+}
+.btn:disabled {
   background-color: #333;
 }
+
 
 @media screen and (max-width: 768px) {
   .btn:active {

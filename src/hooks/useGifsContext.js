@@ -7,5 +7,5 @@ export default function useGifsContext ({ readonly = true } = {}) {
 
   if (!readonly) return { gifs, setGifs, lib, setLib }
 
-  return { gifs }
+  return { gifs, lib }
 }

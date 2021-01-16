@@ -1,17 +1,22 @@
 import { Title } from 'react-head'
+import { Redirect } from 'wouter'
 
 import useAuth from 'hooks/useAuth'
+import useUserContext from 'hooks/useUserContext'
 
 import Profile from 'components/Profile'
 
 export default function User () {
-  const { user } = useAuth()
+  const { isLogged } = useAuth()
+  const { profile } = useUserContext()
+
+  if (!isLogged) return <Redirect to="/login" />
 
   return (
     <>
-      <Title>{user.username} | Gifland</Title>
+      <Title>{profile.username} | Gifland</Title>
 
-      <Profile user={user} />
+      <Profile user={profile} />
     </>
   )
 }

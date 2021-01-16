@@ -1,13 +1,21 @@
 import { useState, createContext } from 'react'
 
-const AuthContext = createContext({ user: {} })
+const AuthContext = createContext('')
+
+function getTokenFromStorage () {
+  let tokenFromStorage = window.sessionStorage.getItem('token')
+
+  if (!tokenFromStorage) tokenFromStorage = ''
+
+  return tokenFromStorage
+}
 
 export function AuthContextProvider ({ children }) {
-  const [user, setUser] = useState({})
+  const [token, setToken] = useState(() => getTokenFromStorage())
 
   const value = {
-    user,
-    setUser
+    token,
+    setToken
   }
 
   return (

@@ -2,8 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
 
-import { GifsContextProvider } from 'context/GifsContext'
-import { AuthContextProvider } from 'context/AuthConext'
+import Providers from './providers'
 
 import App from './App'
 
@@ -11,11 +10,9 @@ import './assets/css/styles.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <GifsContextProvider>
-        <App />
-      </GifsContextProvider>
-    </AuthContextProvider>
+    <Providers>
+      <App />
+    </Providers>
   </React.StrictMode>,
   document.getElementById('root')
 );

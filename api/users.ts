@@ -10,6 +10,10 @@ export interface User {
 
 export const users: User[] = [
   {
+    username: 'midudev',
+    password: 'suscribete'
+  },
+  {
     username: "aomine",
     password: "$2a$10$3OTaA7PpqUEMtS3GcILaoenKw2UtEYGM1PsuogrErUS9gl3mKhL0i",
     display_name: "Omar Carrion Alcocer",

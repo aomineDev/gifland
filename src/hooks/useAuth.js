@@ -1,31 +1,59 @@
-import { useCallback } from 'react'
+import { useState, useCallback } from 'react'
 
 import useAuthContext from 'hooks/useAuthContext'
-import { signin } from 'services/auth'
+import useUserContext from 'hooks/useUserContext'
+
+import { signIn } from 'services/auth'
 
 export default function useAuth () {
-  const { user, setUser } = useAuthContext({ readonly: false })
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
+  const { token, setToken } = useAuthContext({ readonly: false })
+  const { setUser } = useUserContext({ readonly: false })
+  
   const login = useCallback(credentials => {
-    return signin(credentials)
-      .then(response => {
-        delete response.user.password
+    setIsLoading(true)
 
-        setUser({
+    return signIn(credentials)
+      .then((response) => {
+        console.log(response)
+        delete response.user.password
+        
+        const userData = {
           profile: response.user,
-          token: response.jwt
-        })
+          favs: []
+        }
+        console.log(userData)
+
+        window.sessionStorage.setItem('user', JSON.stringify(userData))
+        window.sessionStorage.setItem('token', response.jwt)
+
+        setUser(userData)
+        setToken(response.jwt)
       })
-  }, [setUser])
+      .catch(err => {
+        setHasError(true)
+        console.error('[err] ' + err.message)
+      })
+      .finally(() => setIsLoading(false))
+  }, [setUser, setToken])
 
   const logout = useCallback(() => {
-    setUser({})
-  }, [setUser])
+    window.sessionStorage.removeItem('token')
+    window.sessionStorage.removeItem('user')
+
+    setUser({ profile: {}, favs: [] })
+    setToken('')
+  }, [setUser, setToken])
 
   return {
-    isLogged: Boolean(user.token),
-    user: user.profile,
+    isLogged: Boolean(token),
+    isLoading,
+    setIsLoading,
+    hasError,
+    setHasError,
     login,
-    logout
+    logout,
   }
 }

@@ -1,13 +1,17 @@
 import './styles.css'
 
-export default function Button ({ children, handleClick, isDisabled }) {
+export default function Button ({ children, handleClick, isLoading, isDisabled }) {
+  let btnClassName = 'btn'
+
+  if (isLoading) btnClassName += ' loading'
+
   return (
     <button
-      className='btn'
+      className={btnClassName}
       onClick={handleClick}
       disabled={isDisabled}
     >
-      {children}
+      {isLoading ? 'Loading...' : children}
     </button>
   )
 }
