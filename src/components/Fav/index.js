@@ -10,7 +10,7 @@ export default function Fav ({ id }) {
   const { favs } = useUserContext()
   const { isLogged } = useAuth()
   const { addToFav } = useUser()
-
+  
   let isFav = favs.some(GifId => GifId === id)
 
   let favIconClassName = 'Fav-icon'

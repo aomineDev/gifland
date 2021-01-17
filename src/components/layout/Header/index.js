@@ -14,20 +14,22 @@ import timesIcon from 'assets/icons/times.svg'
 import './styles.css'
 
 export default function Header () {
-  const [isActive, setIsActive] = useState(false)
-  const [isSearchBarActive, setIsSearchBarActive] = useState(false)
-  
   const [location, setLocation] = useLocation()
-  const [query, setQuery] = useInput('')
 
   const isScrollEnable = location === '/'
+
+  const [isActive, setIsActive] = useState(!isScrollEnable)
+  const [isSearchBarActive, setIsSearchBarActive] = useState(false)
+  
+  const [query, setQuery] = useInput('')
+
   const headerEl = useRef()
 
-  let headerClassName = 'Header '
-  let headerFormClassName = 'Header-search-form '
+  let headerClassName = 'Header'
+  let headerFormClassName = 'Header-search-form'
 
-  if (isActive) headerClassName += 'active'
-  if (isSearchBarActive) headerFormClassName += 'active'
+  if (isActive) headerClassName += ' active'
+  if (isSearchBarActive) headerFormClassName += ' active'
 
   useScroll({ handleScroll, isScrollEnable })
 
