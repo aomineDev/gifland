@@ -6,7 +6,7 @@ import Button from 'components/shared/Button'
 import './styles.css'
 
 export default function RegisterForm () {
-  function validate (values) {
+  function validateFields (values) {
     const errors = {}
     if (!values.username) errors.username = 'username is required.'
 
@@ -19,7 +19,7 @@ export default function RegisterForm () {
     return errors
   }
 
-  function onSubmit (values, { setFieldError }) {
+  function handleSubmit (values, { setFieldError }) {
     return signUp(values)
     .catch(err => {
       setFieldError('username', 'username is taken.')
@@ -32,8 +32,8 @@ export default function RegisterForm () {
         username: '',
         password: ''
       }}
-      validate={validate}
-      onSubmit={onSubmit}
+      validate={validateFields}
+      onSubmit={handleSubmit}
     >
       {formik => (
         <Form className="c-register-form" autoComplete="off">
