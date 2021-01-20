@@ -75,13 +75,13 @@ export const postLogin = async (ctx: RouterContext) => {
       payload
     })
     
-    ctx.response.status = 201
+    ctx.response.status = 200
     ctx.response.body = {
       data: {
         user,
         jwt
       },
-      message: 'login successfully'
+      message: 'logined successfully'
     }
   }
 }
@@ -106,5 +106,8 @@ export const postRegister = async (ctx: RouterContext) => {
     // initialize the user favs
     favs[username] = [];
     ctx.response.status = 201
+    ctx.response.body = {
+      message: 'registered successfully'
+    }
   }
 }

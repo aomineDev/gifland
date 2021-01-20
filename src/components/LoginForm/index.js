@@ -41,31 +41,30 @@ export default function Login ({ onLogin }) {
   }
 
   return (
-    <div className="c-login">
-      <form className="c-login-form" onSubmit={handleSubmit}>
-        <h2 className="c-login-title">Log In</h2>
-        <input
-          type="text"
-          className="c-login-input"
-          placeholder="Username"
-          onChange={setUsername}
-          disabled={isLoading}
-        />
-        <input
-          type="password"
-          className="c-login-input"
-          placeholder="Password"
-          onChange={setPassword}
-          disabled={isLoading}
-        />
-        {hasError && <p className="c-login-error-message">Credenciales incorrectas</p>}
-        <Button
-          isDisabled={isDisabled}
-          isLoading={isLoading}
-        >
-          Login
-        </Button>
-      </form>
-    </div>
+    <form className="c-login-form" onSubmit={handleSubmit}>
+      <h2 className="c-login-title">Log In</h2>
+      <input
+        type="text"
+        className="c-login-input"
+        placeholder="Username"
+        onChange={setUsername}
+        disabled={isLoading}
+      />
+      <input
+        type="password"
+        className="c-login-input"
+        placeholder="Password"
+        onChange={setPassword}
+        disabled={isLoading}
+      />
+      {hasError && <p className="c-login-error-message">Credenciales incorrectas</p>}
+      <Button
+        isDisabled={isDisabled}
+        isLoading={isLoading}
+        type="submit"
+      >
+        Login
+      </Button>
+    </form>
   )
 }

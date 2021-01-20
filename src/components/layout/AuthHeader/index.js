@@ -7,13 +7,12 @@ import './styles.css'
 export default function AuthHeader () {
   const { isLogged, logout } = useAuth()
   const { profile } = useUserContext()
-  const [match] = useRoute('/login')
+  const [matchLogin] = useRoute('/login')
+  const [matchRegister] = useRoute('/register')
 
   function handleClick () {
     logout()
   }
-
-  if (match) return null
 
   return (
     <div className="Header-auth">
@@ -27,8 +26,8 @@ export default function AuthHeader () {
           )
           : (
             <>
-              <Link to='/login' className="Header-auth-btn">Login</Link>
-              <Link to='/register' className="Header-auth-btn Header-btn-one">Register</Link>
+              {!matchLogin && <Link to='/login' className="Header-auth-btn">Login</Link>}
+              {!matchRegister && <Link to='/register' className="Header-auth-btn Header-btn-one">Register</Link>}
             </>
           )
       }
