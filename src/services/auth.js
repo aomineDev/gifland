@@ -12,7 +12,10 @@ export function signIn (credentials) {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error('Login failed!')
+        return response.json()
+      })
       .then(({ data }) => data)
 }
 

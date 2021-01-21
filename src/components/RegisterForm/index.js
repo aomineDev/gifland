@@ -1,18 +1,27 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { useLocation } from 'wouter'
+
 import { signUp } from 'services/auth'
 
 import Button from 'components/shared/Button'
 
-import './styles.css'
+const initialValues = {
+  username: '',
+  password: ''
+}
 
 export default function RegisterForm () {
+  // eslint-disable-next-line no-unused-vars
+  const [location, setLocation] = useLocation()
+
   function validateFields (values) {
     const errors = {}
+
     if (!values.username) errors.username = 'username is required.'
 
     if (!values.password) {
       errors.password = 'password is required.'
-    } else if (values.password.length < 3) {
+    } else if (values.password.length <= 3) {
       errors.password = 'Length must be greater than 3'
     }
 
@@ -21,42 +30,40 @@ export default function RegisterForm () {
 
   function handleSubmit (values, { setFieldError }) {
     return signUp(values)
-    .catch(err => {
-      setFieldError('username', 'username is taken.')
-    })
+      .then(() => setLocation('/'))
+      .catch(err => {
+        setFieldError('username', 'username is taken.')
+      })
   }
 
   return (
     <Formik
-      initialValues={{
-        username: '',
-        password: ''
-      }}
+      initialValues={initialValues}
       validate={validateFields}
       onSubmit={handleSubmit}
     >
       {formik => (
-        <Form className="c-register-form" autoComplete="off">
-          <h2 className="c-register-title">Register</h2>
+        <Form className="c-form" autoComplete="off">
+          <h2 className="c-form-title">Register by Formik</h2>
           <Field
             type="text"
             name="username"
-            className="c-register-input"
+            className="c-form-input"
             placeholder="Username"
           />
           <ErrorMessage
-            className="c-register-error-message"
+            className="c-form-error-message"
             name="username"
             component="p"
           />
           <Field
             type="password"
             name="password"
-            className="c-register-input"
+            className="c-form-input"
             placeholder="Password"
           />
           <ErrorMessage
-            className="c-register-error-message"
+            className="c-form-error-message"
             name="password"
             component="p"
           />

@@ -14,10 +14,10 @@ export default function useAuth () {
     setIsLoading(true)
 
     return signIn(credentials)
-      .then(response => {
-        delete response.user.password
+      .then(data => {
+        delete data.user.password
         
-        updateToken(response)
+        updateToken(data)
       })
       .catch(err => {
         setHasError(true)
