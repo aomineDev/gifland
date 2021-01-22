@@ -3,20 +3,18 @@ import { Title } from 'react-head'
 import { useFormik } from 'formik'
 import { useLocation } from 'wouter'
 
-import { signIn } from 'services/auth'
-import useAuthContext from 'hooks/useAuthContext'
+import useAuth from 'hooks/useAuth'
 
+import Container from 'components/layout/Container'
 import Button from 'components/shared/Button'
 
-import 'assets/css/layout/Login.css'
-
 export default function LoginPage () {
-  const { updateToken, token } = useAuthContext({ readonly: false })
   const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
+  const { isLogged, login } = useAuth()
 
   useEffect(() => {
-    if (token) setLocation('/')
-  }, [token]) // eslint-disable-line react-hooks/exhaustive-deps
+    if (isLogged) setLocation('/')
+  }, [isLogged]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const formik = useFormik({
     initialValues: {
@@ -42,47 +40,46 @@ export default function LoginPage () {
   }
 
   function onSubmit (values, { setFieldError }) {
-    return signIn(values)
-      .then(data => {
-        delete data.user.password
-        
-        updateToken(data)
-      })
+    return login(values)
       .catch(err => {
         setFieldError('username', 'Incorrect Credentials.')
       })
   }
 
   return (
-    <div className="Login">
+    <>
       <Title>Login | Gifland</Title>
 
-      <form onSubmit={formik.handleSubmit} className="c-form" autoComplete="off">
-        <h2 className="c-form-title">Login by Formik</h2>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          onChange={formik.handleChange} 
-          className="c-form-input"
-        />
-        {formik.errors.username && <p className="c-form-error-message">{formik.errors.username}</p>}
-        <input 
-          type="password" 
-          name="password"
-          placeholder="Password"
-          onChange={formik.handleChange}
-          className="c-form-input"
-        />
-        {formik.errors.password && <p className="c-form-error-message">{formik.errors.password}</p>}
-        <Button
-          type="submit"
-          isLoading={formik.isSubmitting}
-          isDisabled={!formik.isValid}
-        >
-          Login
-        </Button>
-      </form>
-    </div>
+      <Container center fullHeight>
+        <form onSubmit={formik.handleSubmit} className="c-form" autoComplete="off">
+          <h2 className="c-form-title">Login by Formik hooks</h2>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            className="c-form-input"
+            onChange={formik.handleChange}
+            disabled={formik.isSubmitting}
+          />
+          {formik.errors.username && <p className="c-form-error-message">{formik.errors.username}</p>}
+          <input 
+            type="password" 
+            name="password"
+            placeholder="Password"
+            className="c-form-input"
+            onChange={formik.handleChange}
+            disabled={formik.isSubmitting}
+          />
+          {formik.errors.password && <p className="c-form-error-message">{formik.errors.password}</p>}
+          <Button
+            type="submit"
+            isLoading={formik.isSubmitting}
+            isDisabled={!formik.isValid}
+          >
+            Login
+          </Button>
+        </form>
+      </Container>
+    </>
   )
 }

@@ -50,6 +50,7 @@ export default function RegisterForm () {
             name="username"
             className="c-form-input"
             placeholder="Username"
+            disabled={formik.isSubmitting}
           />
           <ErrorMessage
             className="c-form-error-message"
@@ -61,6 +62,7 @@ export default function RegisterForm () {
             name="password"
             className="c-form-input"
             placeholder="Password"
+            disabled={formik.isSubmitting}
           />
           <ErrorMessage
             className="c-form-error-message"

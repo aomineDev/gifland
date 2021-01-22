@@ -6,56 +6,68 @@ import useAuth from 'hooks/useAuth'
 import Button from 'components/shared/Button'
 
 export default function Login ({ onLogin }) {
-  const [isDisabled, setIsDisabled] = useState(true)
+  const [isSubmiting, setIsSubmiting] = useState(false)
+  const [isValid, setIsValid] = useState(true)
   const [errors, setErrors] = useState({})
 
-  const { isLogged, login, isLoading, hasError, setHasError } = useAuth()
   const [username, setUsername] = useInput(null)
   const [password, setPassword] = useInput(null)
+  const { login } = useAuth()
 
   useEffect(() => {
-    if (isLogged) onLogin && onLogin()
-  }, [isLogged]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (hasError) setHasError(false)
-    const isValid = Object.keys(errors).length ? false : true
-
     if (!isValid) setErrors({})
 
-    if (username !== null && !username) setErrors(errors => ({ ...errors, username: 'username is required' }))
-    if (password !== null && !password) setErrors(errors => ({ ...errors, password: 'password is required' }))
+    validate()
   }, [username, password]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const isValid = Object.keys(errors).length ? false : true
 
-    if (isValid) setIsDisabled(false)
-    else setIsDisabled(true)
+    setIsValid(isValid)
   }, [errors])
+
+  function validate ({ force = false } = {}) {
+    const errors = {}
+
+    if ((username !== null || force) && !username) errors.username = 'username is required'
+    if ((password !== null || force) && !password) errors.password = 'password is required'
+
+    const isValid = Object.keys(errors).length ? false : true
+
+    setErrors(errors)
+
+    return { errors, isValid }
+  }
 
   function handleSubmit (e) {
     e.preventDefault()
 
-    if (!username) setErrors(errors => ({ ...errors, username: 'username is required' }))
-    if (!password) setErrors(errors => ({ ...errors, password: 'password is required' }))
-    if (!username || !password) return
+    const { isValid } = validate({ force: true })
+    
+    if (!isValid) return
+
+    setIsSubmiting(true)
 
     const credentials = { username, password }
 
     login(credentials)
-      .then(() => console.log('se ejecuta aunque exista un error'))
+      .then(() => onLogin && onLogin())
+      .catch(err => {
+        setErrors({ req: 'incorrect credentials.' })
+        setIsSubmiting(false)
+        console.error('[err] ' + err.message)
+      })
   }
 
   return (
     <form className="c-form" onSubmit={handleSubmit}>
-      <h2 className="c-form-title">Log In</h2>
+      <h2 className="c-form-title">Login</h2>
       <input
         type="text"
         className="c-form-input"
         placeholder="Username"
         onChange={setUsername}
-        disabled={isLoading}
+        disabled={isSubmiting}
       />
       {errors.username && <p className="c-form-error-message">{errors.username}</p>}
       <input
@@ -63,13 +75,13 @@ export default function Login ({ onLogin }) {
         className="c-form-input"
         placeholder="Password"
         onChange={setPassword}
-        disabled={isLoading}
+        disabled={isSubmiting}
       />
       {errors.password && <p className="c-form-error-message">{errors.password}</p>}
-      {hasError && <p className="c-form-error-message">Incorrect Credentials</p>}
+      {errors.req && <p className="c-form-error-message">{errors.req}</p>}
       <Button
-        isDisabled={isDisabled}
-        isLoading={isLoading}
+        isDisabled={!isValid}
+        isLoading={isSubmiting}
         type="submit"
       >
         Login

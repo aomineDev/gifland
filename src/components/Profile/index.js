@@ -10,13 +10,13 @@ export default function Profile ({ user }) {
 
   return (
     <>
-      <Container withHeader withoutCenter>
+      <Container withHeader>
         <div className="Profile-banner">
           <img src={user.banner_url || bannerUrl} alt="banner avatar"/>
         </div>
       </Container>
 
-      <Container>
+      <Container withSpace>
         <div className="Profile">
           <div className="Profile-avatar">
             <img src={user.avatar_url} alt="user avatar"/>

@@ -30,7 +30,7 @@ export default function Search ({ params }) {
       <Meta name="description" content={title} />
 
       <div className="Search">
-        <Container withHeader withTop>
+        <Container withHeader withTop withSpace>
           <SectionTitle>{title}</SectionTitle>
           <ListOfGifs
             gifs={gifs}
@@ -39,13 +39,11 @@ export default function Search ({ params }) {
             masonryRow
           />
           <Loader isLoading={isNextPageLoading} />
-          {
-            !isFull && (
-              <div className="next-page-btn-wrapper">
-                <Button handleClick={loadMore}>Load More</Button>
-              </div>
-            )
-          }
+          {!isFull && (
+            <div className="next-page-btn-wrapper">
+              <Button handleClick={loadMore}>Load More</Button>
+            </div>
+          )}
           <TrendingTerms />
         </Container>
       </div>

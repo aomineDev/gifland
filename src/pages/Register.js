@@ -1,15 +1,23 @@
 import { Title } from 'react-head'
 
-import RegisterForm from 'components/RegisterForm'
+// import { useForm } from 'react-hook-form'
 
-import 'assets/css/layout/Register.css'
+import Container from 'components/layout/Container'
+import Button from 'components/shared/Button'
 
 export default function Register () {
   return (
-    <div className="Register">
+    <>
       <Title>Register | Gifland</Title>
 
-      <RegisterForm />
-    </div>      
+      <Container center fullHeight>
+        <form className="c-form">
+          <h2 className="c-form-title">Register with react hook form</h2>
+          <input type="text" className="c-form-input" />
+          <input type="password" className="c-form-input" />
+          <Button type="submit">Register</Button>
+        </form>
+      </Container>
+    </>
   )
 }

@@ -18,3 +18,8 @@
 .Fav-icon.is-fav {
   color: #ff6666;
 }
+.modal-switch {
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+}

@@ -1,7 +1,3 @@
-.Container {
-  padding-right: var(--center-size);
-  padding-left: var(--center-size);
-}
 .Container.top {
   padding-top: var(--center-size);
 }
@@ -9,9 +5,17 @@
   padding-top: 60px;
 }
 .Container.header.top {
-  padding-top: 80px;
+  padding-top: calc(var(--center-size) + 60px);
 }
-.Container.without-center {
-  padding-right: 0;
-  padding-left: 0;
+.Container.space {
+  padding-right: var(--center-size);
+  padding-left: var(--center-size);
+}
+.Container.center {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+.Container.full-height {
+  min-height: 100vh;
 }

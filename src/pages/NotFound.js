@@ -7,7 +7,7 @@ export default function NotFound () {
     <>
       <Title>Not Found | Gifland</Title>
 
-      <Container withHeader withTop>
+      <Container withHeader withTop withSpace>
         <h1>Error 404 :(</h1>
       </Container>
     </>

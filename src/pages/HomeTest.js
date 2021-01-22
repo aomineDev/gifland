@@ -17,7 +17,7 @@ export default function Home () {
 
       <div className='Home'>
         <Hero />
-        <Container>
+        <Container withSpace>
           <SectionTitle>Trending Gifs</SectionTitle>
           <ListOfGifs
             gifs={gifs}

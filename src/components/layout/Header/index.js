@@ -66,7 +66,7 @@ export default function Header () {
 
   return (
     <header className={headerClassName} ref={headerEl}>
-      <Container>
+      <Container withSpace>
         <Link to='/' className="Header-title">Gifland</Link>
         <nav className="Header-nav">
           <div className="Header-search">
