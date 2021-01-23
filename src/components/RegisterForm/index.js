@@ -1,5 +1,4 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { useLocation } from 'wouter'
 
 import { signUp } from 'services/auth'
 
@@ -10,10 +9,7 @@ const initialValues = {
   password: ''
 }
 
-export default function RegisterForm () {
-  // eslint-disable-next-line no-unused-vars
-  const [location, setLocation] = useLocation()
-
+export default function RegisterForm ({ onRegister }) {
   function validateFields (values) {
     const errors = {}
 
@@ -22,7 +18,7 @@ export default function RegisterForm () {
     if (!values.password) {
       errors.password = 'password is required.'
     } else if (values.password.length <= 3) {
-      errors.password = 'Length must be greater than 3'
+      errors.password = 'Length must be greater than 3.'
     }
 
     return errors
@@ -30,7 +26,7 @@ export default function RegisterForm () {
 
   function handleSubmit (values, { setFieldError }) {
     return signUp(values)
-      .then(() => setLocation('/'))
+      .then(() => onRegister && onRegister())
       .catch(err => {
         setFieldError('username', 'username is taken.')
       })

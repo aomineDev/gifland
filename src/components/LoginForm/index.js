@@ -55,7 +55,6 @@ export default function Login ({ onLogin }) {
       .catch(err => {
         setErrors({ req: 'incorrect credentials.' })
         setIsSubmiting(false)
-        console.error('[err] ' + err.message)
       })
   }
 
