@@ -1,22 +1,7 @@
-.Header-search-btn {
-  display: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: transparent;
-  filter: brightness(0) invert(1);
+.Header-auth {
+  position: relative;
 }
-.Header-search-btn:active {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-.Header-search-btn img {
-  width: 20px;
-}
-.Header.active .Header-search {
-  opacity: 1;
-  visibility: visible;
-}
-.Header-auth-btn {
+.Header-btn {
   font-size: 16px;
   font-weight: 600;
   background-color: transparent;
@@ -40,13 +25,83 @@
   background-color: transparent;
   color: #fff;
 }
-.Header-auth-username {
+.Header-user-name {
   border-right: 2px solid #fff;
   padding-right: 20px;
   margin-right: 20px;
   font-weight: 600;
   transition: text-decoration .3s;
 }
-.Header-auth-username:hover {
+.Header-user-name:hover {
   text-decoration: underline;
+}
+.Header-auth-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  filter: brightness(0) invert(1);
+}
+.Header-auth-btn:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.Header-auth-btn img {
+  width: 20px;
+}
+.Header-dropdown {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .Header-auth-btn,
+  .Header-dropdown {
+    display: block;
+  }
+  .Header-user,
+  .Header-auth-actions {
+    display: none;
+  }
+  .Header-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: #fff;
+    color: #212121;
+    padding: 10px 20px;
+    border-radius: 8px;
+    list-style: none;
+    transform: translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+  }
+  .Header-dropdown.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .Header-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    transform: rotate(45deg);
+    z-index: -1;
+    
+  }
+  .Header-dropdown-item:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .Header-dropdown-item {
+    font-weight: 600;
+  }
+  .Header-dropdown-text {
+    display: inline-block;
+    width: 100%;
+  }
 }

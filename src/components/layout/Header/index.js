@@ -86,7 +86,7 @@ export default function Header () {
               <img src={searchIcon} alt="search"/>
             </button>
           </div>
-          <AuthHeader />
+          <AuthHeader location={location} />
         </nav>
       </Container>
     </header>

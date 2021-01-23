@@ -31,6 +31,7 @@ export default function Register () {
           <h2 className="c-form-title">Register with react hook form</h2>
           <input
             type="text"
+            placeholder="Username"
             className="c-form-input"
             name="username"
             ref={register({ required: 'This field is required.' })}
@@ -39,6 +40,7 @@ export default function Register () {
           {errors.username && <p className="c-form-error-message">{errors.username.message}</p>}
           <input
             type="password"
+            placeholder="Password"
             className="c-form-input"
             name="password"
             ref={register({ required: 'This field is required.', minLength: 4 })}
