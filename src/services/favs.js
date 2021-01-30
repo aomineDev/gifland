@@ -1,6 +1,6 @@
 import config from 'config'
 
-const { apiBaseUrl } = config.api
+const { apiBaseUrl } = config.user
 
 const SERVICE = 'favs'
 

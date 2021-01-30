@@ -2,14 +2,13 @@ import { memo } from 'react'
 import { useLocation } from 'wouter'
 
 import useSearchEngine from './hook'
-
+import config from 'config'
 import './styles.css'
 
 const RATINGS = [ 'g', 'pg', 'pg-13', 'r']
 
 function Hero () {
   const [location, setLocation] = useLocation() // eslint-disable-line no-unused-vars
-
   const { query, setQuery, rating, setRating, times } = useSearchEngine()
 
   function handleSubmit (e) {
@@ -49,7 +48,7 @@ function Hero () {
               {RATINGS.map(e => <option key={e} value={e} className='Hero-select-option'>{e}</option>)}
             </select>
           </form>
-          <p className='Hero-times'>query change times: {times}</p>
+          <p className='Hero-times'>{config.user.apiBaseUrl} query change times: {times}</p>
         </div>
       </section>
       <div className="Hero-bottom-wave">
